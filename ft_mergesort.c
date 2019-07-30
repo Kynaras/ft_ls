@@ -54,7 +54,7 @@ n_list *sortlist(n_list *a, n_list *b)
 	{
 		return (a);
 	}
-	if (ft_strcmp((*a).ptr->d_name, (*b).ptr->d_name) <= 0)
+	if (ft_strcmp((*a).name, (*b).name) <= 0)
 	{
 		result = a;
 		result->next = sortlist(a->next, b);

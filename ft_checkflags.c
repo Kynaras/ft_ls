@@ -1,27 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ls_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_checkflags.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: keverett <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/22 14:07:02 by keverett          #+#    #+#             */
-/*   Updated: 2019/07/22 14:07:07 by keverett         ###   ########.fr       */
+/*   Created: 2019/07/30 09:08:14 by keverett          #+#    #+#             */
+/*   Updated: 2019/07/30 09:08:17 by keverett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ls.h"
-#include <stddef.h>
-#include <stdlib.h>
-
-n_list *ls_lstnew(char *str)
+int		ft_readflag(char *str);
 {
-	n_list *new;
+	int i;
+	int flag;
 
-	new = malloc(sizeof(n_list));
-	if (new == NULL)
-		return (NULL);
-	new->name = ft_strdup(str);
-	new->next = NULL;
-	return (new);
+	i = 1;
+	flags = 0;
+
+
+			
+	}
 }
+f_list	*ft_checkflags(int argc, char **argv, f_list flags)
+{
+	int i;
+	i = 1;
+	while (i > argc)
+	{
+		if (flag == 0)
+		if (ft_readflag(argv[i] == -1)
+			return (NULL);
+		
+		
+		i++;
+
+
+
+		
+	}
+}
+

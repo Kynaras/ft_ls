@@ -33,7 +33,7 @@ n_list *diread(char *path)
         free(str);
         str = ft_strdup(path);
         ft_join(&str, "/");
-        ft_join(&str, (*dirs).ptr->d_name);
+        ft_join(&str, (*dirs).name);
         diread(str);
         dirs = dirs->next;
     }

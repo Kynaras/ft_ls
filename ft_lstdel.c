@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ls_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_lstdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: keverett <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/22 14:07:02 by keverett          #+#    #+#             */
-/*   Updated: 2019/07/22 14:07:07 by keverett         ###   ########.fr       */
+/*   Created: 2019/07/30 13:47:21 by keverett          #+#    #+#             */
+/*   Updated: 2019/07/30 13:47:24 by keverett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ls.h"
-#include <stddef.h>
-#include <stdlib.h>
-
-n_list *ls_lstnew(char *str)
+void ft_lstdel(n_list *lst)
 {
-	n_list *new;
+	n_list tmp;
 
-	new = malloc(sizeof(n_list));
-	if (new == NULL)
-		return (NULL);
-	new->name = ft_strdup(str);
-	new->next = NULL;
-	return (new);
+	while (lst != NULL)
+	{
+		tmp = lst->next;
+		free(lst);
+		lst = tmp;
+	}
+	return ;
 }

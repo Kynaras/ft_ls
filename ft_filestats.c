@@ -16,7 +16,7 @@ void ft_filestats(char *path)
 {
 	int i = 0;
 	struct stat sb = NULL;
-	if (stat(path, &sb) != -1)
+	if (lstat(path, &sb) != -1)
 	
 	while (i <= 10)
 	{

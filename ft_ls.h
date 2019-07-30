@@ -14,12 +14,21 @@
 
 typedef struct name_list
 {
-	struct dirent *ptr;
+	char *name;
 	struct name_list *next;
 } n_list;
 
+typedef	struct flag_list
+{
+	unsigned int 	recursive : 1;
+	unsigned int 	reverse : 1;
+	unsigned int 	time : 1;
+	unsigned int 	hidden : 1;
+	unsigned int	list : 1;
+} f_list;
+
 void 	ft_mergesort(n_list **lst);
-n_list 	*ls_lstnew(struct dirent *ptr);
+n_list 	*ls_lstnew(char *name);
 void 	ls_lstadd(n_list *head, n_list *new);
 n_list 	*diread(char *path);
 n_list	*ft_makelst(DIR *dr);
