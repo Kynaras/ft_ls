@@ -22,22 +22,5 @@ int		ft_readflag(char *str);
 			
 	}
 }
-f_list	*ft_checkflags(int argc, char **argv, f_list flags)
-{
-	int i;
-	i = 1;
-	while (i > argc)
-	{
-		if (flag == 0)
-		if (ft_readflag(argv[i] == -1)
-			return (NULL);
-		
-		
-		i++;
 
-
-
-		
-	}
-}
 

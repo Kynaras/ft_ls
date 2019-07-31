@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lss.c                                           :+:      :+:    :+:   */
+/*   ft_readflag.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: keverett <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/30 12:06:13 by keverett          #+#    #+#             */
-/*   Updated: 2019/07/30 12:06:17 by keverett         ###   ########.fr       */
+/*   Created: 2019/07/31 09:38:21 by keverett          #+#    #+#             */
+/*   Updated: 2019/07/31 09:38:24 by keverett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ls.h"
-
-void ft_lss(char *path)
-{   
-	n_list *lst = NULL;
-
-    lst = ft_readdir(path);
-	ft_mergesort(&lst);
-    ft_printlst(lst);
-    return;
+int	ft_readflag(char *str)
+{
+	if(str[0] == '-')
+		return (1);
+	else
+		return (0);
 }
+	
+

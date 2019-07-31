@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lss.c                                           :+:      :+:    :+:   */
+/*   ft_printlst.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: keverett <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/30 12:06:13 by keverett          #+#    #+#             */
-/*   Updated: 2019/07/30 12:06:17 by keverett         ###   ########.fr       */
+/*   Created: 2019/07/31 09:15:38 by keverett          #+#    #+#             */
+/*   Updated: 2019/07/31 09:15:42 by keverett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ls.h"
-
-void ft_lss(char *path)
-{   
-	n_list *lst = NULL;
-
-    lst = ft_readdir(path);
-	ft_mergesort(&lst);
-    ft_printlst(lst);
-    return;
+void ft_printlst(n_list *lst)
+{
+	while (lst != NULL)
+    {
+        printf("%s\n", lst->name);
+        lst = lst->next;
+    }
+	return ;
 }

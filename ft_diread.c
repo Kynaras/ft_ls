@@ -12,7 +12,7 @@
 
 #include "ft_ls.h"
 
-n_list *ft_diread(char *path)
+n_list *diread(char *path)
 {
     char *str = ft_strdup(path);
     n_list *dirs = NULL;
@@ -34,7 +34,7 @@ n_list *ft_diread(char *path)
         str = ft_strdup(path);
         ft_join(&str, "/");
         ft_join(&str, (*dirs).name);
-        ft_diread(str);
+        diread(str);
         dirs = dirs->next;
     }
     closedir(dr);

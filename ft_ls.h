@@ -27,10 +27,12 @@ typedef	struct flag_list
 	unsigned int	list : 1;
 } f_list;
 
+f_list	*ft_checkflags(int argc, char **argv);
+void 	ft_lss(char *path);
 void 	ft_mergesort(n_list **lst);
 n_list 	*ls_lstnew(char *name);
 void 	ls_lstadd(n_list *head, n_list *new);
-n_list 	*diread(char *path);
+n_list 	*ft_diread(char *path);
 n_list	*ft_makelst(DIR *dr);
 
 #endif

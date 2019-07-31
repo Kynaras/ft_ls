@@ -12,33 +12,37 @@
 
 #include "ft_ls.h"
 
-int main() 
+int main(int argc, char **argv) 
 {
-    // int ers;
+    int ers;
 
-    // ers = 0;
-    // if (argc = 1)
-    // {
-    //     ft_lss(".");
-    //     return (0);  
-    // }
+    ers = 0;
+    if (argc == 1)
+    {
+        ft_lss(".");
+        return (0);  
+    }
+    else
+        ers = ft_readflags(argv[1]);
+    if (ers == 0)
+        ft_onlynames(int argc, char **argv)
+ls
     // else
     // {
     //     ers = ft_checkflags(argc, argv);
-    //     if (ers = -1)
+    //     if (ers == -1)
     //     {
     //         ft_putstr("ls: illegal option\n");
-    //         ft_putstr("usage: ft_ls [-Ralrt] [file ...]\n")
+    //         ft_putstr("usage: ft_ls [-Ralrt] [file ...]\n");
     //         return (0);
-    //     }
-    //     if (ers = 0)
-    //     {
-    //         ft_readfiles()
-
-    //     }
+    //    }
+        // if (ers == 0)
+        // {
+        //     ft_readfiles();
+        // }
 
    
-    diread(".");
-
-    return (0);
+   // diread(".");
+   return (0);
 }
+//}
