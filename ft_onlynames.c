@@ -27,12 +27,7 @@ void	ft_only_names(int argc, char **argv)
 	{
 		if(!(dr = opendir(argv[i])))
 		{
-			if (errno == ENOTDIR)
-				ft_lster(argv[i], &lst);
-			else if (errno == ENOENT)
-				ft_lster(argv[i], &neg);
-			else if (errno == EACCES)
-				ft_lster(argv[i], &noaccess);
+			perror("Error ");
 		}
 		else
 			ft_lster(argv[i], &dirs);

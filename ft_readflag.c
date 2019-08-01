@@ -17,5 +17,5 @@ int	ft_readflag(char *str)
 	else
 		return (0);
 }
-	
+
 
