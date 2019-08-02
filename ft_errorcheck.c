@@ -13,7 +13,7 @@
 
 #include "ft_ls.h"
 
-void 	ft_errorcheck(char *str, n_list **lst)
+void 	ft_errorcheck(char *str, n_list **lst, n_list **dirs)
 {
 	DIR *dr;
 
@@ -24,13 +24,16 @@ void 	ft_errorcheck(char *str, n_list **lst)
 				if (lst == NULL)
 					*lst = ls_lstnew(str);
 				else
-					ls_lstadd(lst, str);
+					ls_lstadd(*lst, ls_lstnew(str));
 			}
-			else if (errno == EACCES)
-			
-
-
-			perror("Error ");
+			else if (errno == ENOENT)
+				perror("Error ");			
 		}
-
+	else
+	{
+		if (dirs == NULL)
+			*dirs = ls_lstnew(str);
+		else
+			ls_lstadd(*dirs, ls_lstnew(str));
+	}
 }
