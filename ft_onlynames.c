@@ -15,7 +15,6 @@ void	ft_only_names(int argc, char **argv)
 {
 	int i;
 	n_list *lst;
-	n_list *neg;
 	n_list *dirs;
 	DIR *dr;
 
@@ -25,10 +24,8 @@ void	ft_only_names(int argc, char **argv)
 	
 	while (i < argc)
 	{
-		ft_errorcheck(argv[i], &lst)
+		ft_errorcheck(argv[i], &lst, &dirs)
+		i++
 	}
-		// else
-		// 	ft_lster(argv[i], &dirs);
-		i++;			
 	}
 }
