@@ -27,7 +27,7 @@ typedef	struct flag_list
 	unsigned int	list : 1;
 } f_list;
 
-f_list	*ft_checkflags(int argc, char **argv);
+f_list	*ft_checkflags(int argc, char **argv, f_list *flags);
 void 	ft_lss(char *path);
 void 	ft_mergesort(n_list **lst);
 n_list 	*ls_lstnew(char *name);

@@ -17,7 +17,11 @@ void ft_lss(char *path)
 	n_list *lst = NULL;
 
     lst = ft_readdir(path);
-	ft_mergesort(&lst);
-    ft_printlst(lst);
+	
+    if (lst)
+    {
+        ft_mergesort(&lst);
+        ft_printlst(lst);
+    }
     return;
 }

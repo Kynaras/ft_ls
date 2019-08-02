@@ -18,13 +18,11 @@ n_list *ft_readdir(char *path)
 	struct dirent *de;
 	n_list *lst = NULL;
 	
-	dr = opendir(path);
-    if (dr == NULL)
+	if(!(dr = opendir(path)))
     {
-        printf("Error: Could not open directory!\n");
+        perror("Error: ");
         return (lst);
     }
-
 	while ((de = readdir(dr)) != NULL)
     {
         if (ft_strncmp(de->d_name, ".", 1) != 0)

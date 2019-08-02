@@ -1,27 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdel.c                                        :+:      :+:    :+:   */
+/*   ft_flagset.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: keverett <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/30 13:47:21 by keverett          #+#    #+#             */
-/*   Updated: 2019/07/30 13:47:24 by keverett         ###   ########.fr       */
+/*   Created: 2019/08/02 12:00:03 by keverett          #+#    #+#             */
+/*   Updated: 2019/08/02 12:57:49 by keverett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ls.h"
-
-void ft_lstdel(n_list *lst)
+void ft_flagset(f_list *flags)
 {
-	n_list *tmp;
-
-	while (lst != NULL)
-	{
-		tmp = lst->next;
-		free(lst->name);
-		free(lst);
-		lst = tmp;
-	}
-	return ;
+	flags->recursive = 0;
+	flags->reverse = 0;
+	flags->time = 0;
+	flags->hidden = 0;
+	flags->list = 0;
+	return;
 }

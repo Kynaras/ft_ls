@@ -10,17 +10,32 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_readflag(char *str);
+#include "ft_ls.h"
+
+void		ft_readflag(int argc, char **argv, f_list *flags)
 {
 	int i;
-	int flag;
+	int j;
 
-	i = 1;
-	flags = 0;
-
-
-			
+	j = 0;
+	i = 0;
+	while (++i < argc)
+	{
+		while (argv[i][j++])
+		{
+			if (argv[i][0] != '-')
+				return (flags);
+			else if (argv[i][j] == 't')
+				flags->time = 1;
+			else if (argv[i][j] == 'l')
+				flags->list = 1;
+			else if (argv[i][j] == 'r')
+				flags->reverse = 1;
+			else if (argv[i][j] == 'R')
+				flags->recursive	= 1;
+			else if (argv[i][j] == 'a')
+				flags->hidden = 1;
+		}
+		j = 0;
 	}
 }
-
-

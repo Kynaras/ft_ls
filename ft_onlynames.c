@@ -16,21 +16,19 @@ void	ft_only_names(int argc, char **argv)
 	int i;
 	n_list *lst;
 	n_list *neg;
-	n_list *noaccess;
 	n_list *dirs;
 	DIR *dr;
 
 	i = 1;
 	lst = NULL;
 	neg = NULL;
+	
 	while (i < argc)
 	{
-		if(!(dr = opendir(argv[i])))
-		{
-			perror("Error ");
-		}
-		else
-			ft_lster(argv[i], &dirs);
+		ft_errorcheck(argv[i], &lst)
+	}
+		// else
+		// 	ft_lster(argv[i], &dirs);
 		i++;			
 	}
 }
