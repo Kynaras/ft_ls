@@ -34,5 +34,6 @@ n_list 	*ls_lstnew(char *name);
 void 	ls_lstadd(n_list *head, n_list *new);
 n_list 	*ft_diread(char *path);
 n_list	*ft_makelst(DIR *dr);
+void ft_printlst(n_list *lst);
 
 #endif

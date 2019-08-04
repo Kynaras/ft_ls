@@ -27,5 +27,9 @@ void	ft_only_names(int argc, char **argv)
 		ft_errorcheck(argv[i], &lst, &dirs)
 		i++
 	}
-	}
+	ft_mergesort(&lst);
+	ft_printlst(lst);
+	ft_mergesort(&dirs);
+	ft_lstls(dirs);
+	return;
 }
