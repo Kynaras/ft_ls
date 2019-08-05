@@ -20,7 +20,7 @@
 #include <string.h>
 #include "libft/libft.h"
 
-n_list	*ft_makelst(DIR *dr)
+n_list	*ft_makelst(DIR *dr, f_list flags)
 {
 	n_list *lst = NULL;
     struct dirent *de = NULL;

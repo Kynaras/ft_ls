@@ -10,12 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-void ft_printlst(n_list *lst)
+#include "ft_ls.h"
+
+void ft_printlst(n_list *lst, f_list flags)
 {
 	while (lst != NULL)
     {
-        printf("%s\n", lst->name);
-        lst = lst->next;
+        if (*lst->name == '.' && flags.hidden == 1)  
+            printf("%s\n", lst->name);
+        else if (*lst->name != '.')
+            printf("%s\n", lst->name);
+      lst = lst->next;
     }
 	return ;
 }

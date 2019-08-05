@@ -12,9 +12,11 @@
 
 #include "ft_ls.h"
 
-void ft_lss(char *path)
+void ft_lss(char *path, f_list flags)
 {   
-	n_list *lst = NULL;
+	n_list *lst;
+    n_list *dirs;
+
 
     lst = ft_readdir(path);
 	

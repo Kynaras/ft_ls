@@ -17,15 +17,11 @@ n_list *diread(char *path)
     char *str = ft_strdup(path);
     n_list *dirs = NULL;
     struct stat sb;
-
     DIR *dr = NULL;
-    printf("DIRECTORY: %s\n\n", path);
+    
     dr = opendir(path);
     if (dr == NULL)
-    {
-        printf("Null dir. Path was %s\n", path);
         return (NULL);
-    }
 
     dirs = ft_makelst(dr);
     while (dirs != NULL)

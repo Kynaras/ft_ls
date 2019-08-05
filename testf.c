@@ -15,22 +15,19 @@
 int main(int argc, char **argv) 
 {
     f_list flags;
-    ft_flagset(flags);
     int ers;
-    ers = 0;
-    if (argc == 1)
+
+    ft_flagset(&flags);
+    ft_readflag(argc, argv, &flags);
+    ers = ft_flagcount(&flags);
+    if (argc == 2)
     {
-        ft_lss(".");
+        ft_readdir(".", flags);
         return (0);  
     }
-    if (ers = ft_readflags(argv[1])) 
-        ft_checkflags(argc, argv, &flags);
-    else
-    {
-        ft_onlynames(argc, argv);
-        return (0);
-    }
-    
+    // if (flags.recursive = 1 && flags.hidden->) 
+    //     ft_readflag(argc, argv, &flags);
+  
     // else
     // {
     //     ers = ft_checkflags(argc, argv);

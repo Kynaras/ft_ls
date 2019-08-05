@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_flagset.c                                       :+:      :+:    :+:   */
+/*   ft_flagcount.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: keverett <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/02 12:00:03 by keverett          #+#    #+#             */
-/*   Updated: 2019/08/02 12:57:49 by keverett         ###   ########.fr       */
+/*   Created: 2019/08/05 08:39:59 by keverett          #+#    #+#             */
+/*   Updated: 2019/08/05 08:40:00 by keverett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void ft_flagset(f_list *flags)
+int	ft_flagcount(f_list *flags)
 {
-	flags->recursive = 0;
-	flags->reverse = 0;
-	flags->time = 0;
-	flags->hidden = 0;
-	flags->list = 0;
-	return;
+	int i;
+
+	i = 0;
+	if (flags->hidden == 1 || flags->list == 1 || flags->recursive == 1 || 
+	flags->reverse == 1 || flags->time == 1)
+		i++;
+	return (i);
 }

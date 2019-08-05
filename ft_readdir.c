@@ -12,12 +12,17 @@
 
 #include "ft_ls.h"
 
-n_list *ft_readdir(char *path)
+n_list *ft_readdir(char *path, f_list flags)
 {
-	DIR *dr = NULL;
+	DIR *dr;
 	struct dirent *de;
-	n_list *lst = NULL;
+	n_list *lst;
+    n_list *dirs;
+    char *str;
 	
+    dirs = NULL;
+    dr = NULL;
+    lst = NULL;
 	if(!(dr = opendir(path)))
     {
         perror("Error: ");
@@ -25,14 +30,33 @@ n_list *ft_readdir(char *path)
     }
 	while ((de = readdir(dr)) != NULL)
     {
-        if (ft_strncmp(de->d_name, ".", 1) != 0)
-        {
          if (lst == NULL)
 			lst = ls_lstnew(de->d_name);
          else
             ls_lstadd(lst, ls_lstnew(de->d_name));
+        if (de->d_type == DT_DIR && ft_strcmp(de->d_name, ".") != 0 && ft_strcmp(de->d_name, "..") != 0 )
+        {
+            if (dirs == NULL)
+               dirs = ls_lstnew(de->d_name);
+            else
+                ls_lstadd(dirs, ls_lstnew(de->d_name));
         }
     }
+    ft_mergesort(&lst);
+    ft_printlst(lst, flags);
     closedir(dr);
-	return(lst);
+
+    if (flags.recursive == 1)
+    {
+        while (dirs != NULL)
+    {
+        str = ft_strdup(path);
+        ft_join(&str, "/");
+        ft_join(&str, (*dirs).name);
+        ft_readdir(str, flags);
+        free(str);
+        dirs = dirs->next;
+    }
+    }
+	return(dirs);
 }

@@ -24,7 +24,7 @@ void		ft_readflag(int argc, char **argv, f_list *flags)
 		while (argv[i][j++])
 		{
 			if (argv[i][0] != '-')
-				return (flags);
+				return ;
 			else if (argv[i][j] == 't')
 				flags->time = 1;
 			else if (argv[i][j] == 'l')
@@ -32,7 +32,7 @@ void		ft_readflag(int argc, char **argv, f_list *flags)
 			else if (argv[i][j] == 'r')
 				flags->reverse = 1;
 			else if (argv[i][j] == 'R')
-				flags->recursive	= 1;
+				flags->recursive = 1;
 			else if (argv[i][j] == 'a')
 				flags->hidden = 1;
 		}
