@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printlst.c                                      :+:      :+:    :+:   */
+/*   ft_arglst.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: keverett <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/31 09:15:38 by keverett          #+#    #+#             */
-/*   Updated: 2019/07/31 09:15:42 by keverett         ###   ########.fr       */
+/*   Created: 2019/08/06 15:37:00 by keverett          #+#    #+#             */
+/*   Updated: 2019/08/06 15:37:01 by keverett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void ft_printlst(n_list *lst, f_list flags)
+n_list *ft_arglst(int argc, char **argv, int i)
 {
-	while (lst != NULL)
-    {
-        
-        if (*lst->name == '.' && flags.hidden == 1)  
-            printf("%s\n", lst->name);
-        else if (*lst->name != '.')
-            printf("%s\n", lst->name);
-      lst = lst->next;
-    }
-	return ;
+	int index;
+	n_list *args;
+
+	args = NULL;
+	index = i;
+
+	while (index < argc)
+	{
+		if (args == NULL)
+			args = ls_lstnew(argv[index]);
+		else
+			ls_lstadd(args, ls_lstnew(argv[index]));
+		index++;
+	}
+	return (args);
 }

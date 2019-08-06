@@ -14,36 +14,45 @@
 
 int main(int argc, char **argv) 
 {
+    char error;
+    n_list *lst;
     f_list flags;
     int ers;
+    int i;
 
+    i = 0;
     ft_flagset(&flags);
-    ft_readflag(argc, argv, &flags);
+    
+    if (argc > 1)
+        i = ft_readflag(argc, argv, &flags);
+
+    if (i == -1)
+    {
+        error = ft_finderror(argc, argv);
+        ft_putstr("ft_ls: illegal option -- ");
+        ft_putchar (error);
+        ft_putstr("\nusage: ft_ls [-Ralrt] [file ...]");
+        return (0);
+    }
     ers = ft_flagcount(&flags);
-    if (argc == 2)
+    if (argc == 1)
     {
         ft_readdir(".", flags);
         return (0);  
     }
-    // if (flags.recursive = 1 && flags.hidden->) 
-    //     ft_readflag(argc, argv, &flags);
-  
-    // else
-    // {
-    //     ers = ft_checkflags(argc, argv);
-    //     if (ers == -1)
-    //     {
-    //         ft_putstr("ls: illegal option\n");
-    //         ft_putstr("usage: ft_ls [-Ralrt] [file ...]\n");
-    //         return (0);
-    //    }
-        // if (ers == 0)
-        // {
-        //     ft_readfiles();
-        // }
+    else if (argc >= 2)
+    {
+        lst = ft_arglst(argc, argv, i);
+        ft_mergesort(&lst);
+    }
 
-   
-   // diread(".");
+    while (lst)
+    {
+        ft_readdir(lst->name, flags);
+        lst = lst->next;
+    }
+    
+
    return (0);
 }
 //}

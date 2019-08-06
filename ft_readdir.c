@@ -44,6 +44,7 @@ n_list *ft_readdir(char *path, f_list flags)
     }
     ft_mergesort(&lst);
     ft_printlst(lst, flags);
+    ft_dellst(lst);
     closedir(dr);
 
     if (flags.recursive == 1)
@@ -53,6 +54,9 @@ n_list *ft_readdir(char *path, f_list flags)
         str = ft_strdup(path);
         ft_join(&str, "/");
         ft_join(&str, (*dirs).name);
+        ft_putchar('\n');
+        ft_putstr(str);
+        ft_putstr(":\n");
         ft_readdir(str, flags);
         free(str);
         dirs = dirs->next;

@@ -1,21 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_readflag.c                                      :+:      :+:    :+:   */
+/*   ft_checkflags.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: keverett <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/31 09:38:21 by keverett          #+#    #+#             */
-/*   Updated: 2019/07/31 09:38:24 by keverett         ###   ########.fr       */
+/*   Created: 2019/07/30 09:08:14 by keverett          #+#    #+#             */
+/*   Updated: 2019/07/30 09:08:17 by keverett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_readflag(char *str)
+#include "ft_ls.h"
+
+int		ft_readflag(int argc, char **argv, f_list *flags)
 {
-	if(str[0] == '-')
-		return (1);
-	else
-		return (0);
+	int i;
+	int j;
+
+	j = 0;
+	i = 0;
+	while (++i < argc && argv[i][0] == '-')
+	{
+		while (argv[i][++j])
+		{
+			if (argv[i][j] == 't')
+				flags->time = 1;
+			else if (argv[i][j] == 'l')
+				flags->list = 1;
+			else if (argv[i][j] == 'r')
+				flags->reverse = 1;
+			else if (argv[i][j] == 'R')
+				flags->recursive = 1;
+			else if (argv[i][j] == 'a')
+				flags->hidden = 1;
+			else
+				return(-1);
+		}
+		j = 0;
+	}
+return (i);
 }
-
-

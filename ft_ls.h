@@ -27,7 +27,7 @@ typedef	struct flag_list
 	unsigned int	list : 1;
 } f_list;
 
-void	ft_readflag(int argc, char **argv, f_list *flags);
+int		ft_readflag(int argc, char **argv, f_list *flags);
 f_list	*ft_checkflags(int argc, char **argv, f_list *flags);
 void 	ft_lss(char *path, f_list flags);
 void 	ft_mergesort(n_list **lst);
@@ -40,5 +40,8 @@ n_list 	*ft_readdir(char *path, f_list flags);
 void	ft_flagset(f_list *flags);
 void	ft_only_names(int argc, char **argv);
 int		ft_flagcount(f_list *flags);
+void 	ft_dellst(n_list *lst);
+char	ft_finderror(int argc, char **argv);
+n_list *ft_arglst(int argc, char **argv, int i);
 
 #endif
