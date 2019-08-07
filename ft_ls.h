@@ -13,6 +13,7 @@
 # include <pwd.h>
 # include <uuid/uuid.h>
 # include <grp.h>
+# include <time.h>
 
 typedef struct name_list
 {
@@ -37,7 +38,7 @@ n_list 	*ls_lstnew(char *name);
 void 	ls_lstadd(n_list *head, n_list *new);
 n_list 	*ft_diread(char *path);
 n_list	*ft_makelst(DIR *dr);
-void	ft_printlst(n_list *lst, f_list flags);
+void	ft_printlst(n_list *lst, f_list flags, char *path);
 n_list 	*ft_readdir(char *path, f_list flags);
 void	ft_flagset(f_list *flags);
 void	ft_only_names(int argc, char **argv);
@@ -45,6 +46,7 @@ int		ft_flagcount(f_list *flags);
 void 	ft_dellst(n_list *lst);
 char	ft_finderror(int argc, char **argv);
 n_list *ft_arglst(int argc, char **argv, int i);
-void ft_filestats(char *path);
+void	ft_filestats(char *path, char *origin);
+void	ft_timesplit(char *str);
 
 #endif

@@ -40,24 +40,38 @@ void ft_perms(struct stat sb, int i)
 			ft_putchar('-');
 		return;
 }
-void ft_filestats(char *path)
+void ft_filestats(char *path, char *origin)
 {
+	char *str;
 	int i;
 	struct stat sb;
-	if (lstat(path, &sb) != -1)
-	
+
+	str = ft_strdup(path);
+	if (ft_strcmp(path, origin) != 0)
+	{
+		free(str);
+		str = ft_strdup(origin);
+		ft_join(&str, "/");
+		ft_join(&str, path);
+	}
+	if (lstat(str, &sb) >= 0)
+	{
 	i = 0;
 	while (i < 10)
 	{
 		ft_perms(sb, i);
 		i++;
 	}
-	ft_putchar('\t');
+	ft_putchar(' ');
 	ft_putnbr((int)sb.st_nlink);
 	ft_putchar('\t');
-	ft_putstr((getpwuid(sb.st_uid))->pw_name);
-	ft_putchar('\t');
+	ft_putstr(getpwuid(sb.st_uid)->pw_name);
+	ft_putchar(' ');
 	ft_putstr((getgrgid(sb.st_gid)->gr_name));
 	ft_putchar('\t');
 	ft_putlonglong(sb.st_size);
+	ft_putchar('\t');
+	ft_timesplit(ctime(&sb.st_mtimespec.tv_sec));
+	}
+	free(str);
 }

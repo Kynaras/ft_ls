@@ -12,7 +12,7 @@
 
 #include "ft_ls.h"
 
-void ft_printlst(n_list *lst, f_list flags)
+void ft_printlst(n_list *lst, f_list flags, char *path)
 {
 	while (lst != NULL)
     {   
@@ -20,7 +20,7 @@ void ft_printlst(n_list *lst, f_list flags)
         {
              if (flags.list == 1)
              {
-                 ft_filestats(lst->name);
+                 ft_filestats(lst->name, path);
                  ft_putchar(' ');
              }
              printf("%s\n", lst->name);
@@ -29,7 +29,7 @@ void ft_printlst(n_list *lst, f_list flags)
         {
             if (flags.list == 1)
              {
-                 ft_filestats(lst->name);
+                 ft_filestats(lst->name, path);
                  ft_putchar(' ');
              }
             printf("%s\n", lst->name);
