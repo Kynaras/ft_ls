@@ -6,11 +6,13 @@
 # include <dirent.h>
 # include <stdio.h>
 # include <stdlib.h>
-# include <sys/stat.h>
 # include <stdio.h> 
 # include <sys/errno.h>
 # include <string.h>
 # include "libft/libft.h" 
+# include <pwd.h>
+# include <uuid/uuid.h>
+# include <grp.h>
 
 typedef struct name_list
 {
@@ -43,5 +45,6 @@ int		ft_flagcount(f_list *flags);
 void 	ft_dellst(n_list *lst);
 char	ft_finderror(int argc, char **argv);
 n_list *ft_arglst(int argc, char **argv, int i);
+void ft_filestats(char *path);
 
 #endif

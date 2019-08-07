@@ -12,37 +12,52 @@
 
 #include "ft_ls.h"
 
-void ft_filestats(char *path)
+void ft_perms(struct stat sb, int i)
 {
-	int i = 0;
-	struct stat sb = NULL;
-	if (lstat(path, &sb) != -1)
-	
-	while (i <= 10)
-	{
-		if (S_ISDIR(sb.st_mode) && i == 0)
+	if (i == 0 && S_ISDIR(sb.st_mode))
 			ft_putchar('d');
-		else if (S_ISLNK(sb.st_mode) && i == 0)
+	else if (i == 0 && S_ISLNK (sb.st_mode))
 			ft_putchar('l');
-		else if (S_IRUSR(sb.st_mode) && i == 1)
+	else if (i == 1 && S_IRUSR & sb.st_mode)
 			ft_putchar('r');
-		else if (S_IWUSR(sb.st_mode) && i == 2)
+	else if (i == 2 && S_IWUSR & sb.st_mode)
 			ft_putchar('w');
-		else if (S_IXUSR(sb.st_mode) && i == 3)
+	else if (i == 3 && S_IXUSR & sb.st_mode)
 			ft_putchar('x');
-		else if (S_IRGRP(sb.st_mode) && i == 4)
+	else if (i == 4 && S_IRGRP & sb.st_mode)
 			ft_putchar('r');
-		else if (S_IWGRP(sb.st_mode) && i == 5)
+	else if (i == 5 && S_IWGRP & sb.st_mode)
 			ft_putchar('w');
-		else if (S_IXGRP(sb.st_mode) && i == 6)
+	else if (i == 6 && S_IXGRP & sb.st_mode)
 			ft_putchar('x');
-		else if (S_IROTH(sb.st_mode) && i == 7)
+	else if (i == 7 && S_IROTH & sb.st_mode)
 			ft_putchar('r');
-		else if (S_IWOTH(sb.st_mode) && i == 8)
+	else if (i == 8 && S_IWOTH & sb.st_mode)
 			ft_putchar('w');
-		else if (S_IXOTH(sb.st_mode) && i == 9)
+	else if (i == 9 && S_IXOTH & sb.st_mode)
 			ft_putchar('x');
 		else
 			ft_putchar('-');
+		return;
+}
+void ft_filestats(char *path)
+{
+	int i;
+	struct stat sb;
+	if (lstat(path, &sb) != -1)
+	
+	i = 0;
+	while (i < 10)
+	{
+		ft_perms(sb, i);
+		i++;
 	}
+	ft_putchar('\t');
+	ft_putnbr((int)sb.st_nlink);
+	ft_putchar('\t');
+	ft_putstr((getpwuid(sb.st_uid))->pw_name);
+	ft_putchar('\t');
+	ft_putstr((getgrgid(sb.st_gid)->gr_name));
+	ft_putchar('\t');
+	ft_putlonglong(sb.st_size);
 }

@@ -15,13 +15,26 @@
 void ft_printlst(n_list *lst, f_list flags)
 {
 	while (lst != NULL)
-    {
-        
-        if (*lst->name == '.' && flags.hidden == 1)  
-            printf("%s\n", lst->name);
+    {   
+        if (*lst->name == '.' && flags.hidden == 1) 
+        {
+             if (flags.list == 1)
+             {
+                 ft_filestats(lst->name);
+                 ft_putchar(' ');
+             }
+             printf("%s\n", lst->name);
+        }
         else if (*lst->name != '.')
+        {
+            if (flags.list == 1)
+             {
+                 ft_filestats(lst->name);
+                 ft_putchar(' ');
+             }
             printf("%s\n", lst->name);
-      lst = lst->next;
+        }    
+        lst = lst->next;
     }
 	return ;
 }

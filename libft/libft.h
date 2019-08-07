@@ -6,7 +6,7 @@
 /*   By: keverett <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/23 10:55:41 by keverett          #+#    #+#             */
-/*   Updated: 2019/07/24 09:59:10 by keverett         ###   ########.fr       */
+/*   Updated: 2019/08/07 12:50:31 by keverett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <unistd.h>
-#include <sys/types.h>
-#include <sys/uio.h>
+# include <sys/types.h>
+# include <sys/uio.h>
 
 typedef	struct	s_list
 {
@@ -55,6 +55,7 @@ void			ft_putchar(char c);
 void			ft_putchar_fd(char c, int fd);
 void			ft_putendl(char *str);
 void			ft_putendl_fd(char const *s, int fd);
+void			ft_putlonglong(long long n);
 void			ft_putnbr(int n);
 void			ft_putnbr_fd(int n, int fd);
 void			ft_putstr(char const *s);

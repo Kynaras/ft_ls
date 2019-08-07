@@ -6,7 +6,7 @@
 #    By: keverett <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/23 10:35:56 by keverett          #+#    #+#              #
-#    Updated: 2019/07/10 07:40:15 by keverett         ###   ########.fr        #
+#    Updated: 2019/08/07 12:51:01 by keverett         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,7 @@ SRC = ft_atoi.c \
 		ft_putchar_fd.c \
 		ft_putendl.c \
 		ft_putendl_fd.c \
+		ft_putlonglong.c \
 		ft_putnbr.c \
 		ft_putnbr_fd.c \
 		ft_strcat.c \

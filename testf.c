@@ -46,13 +46,19 @@ int main(int argc, char **argv)
         ft_mergesort(&lst);
     }
 
-    while (lst)
+    if (lst != NULL)
     {
-        ft_readdir(lst->name, flags);
-        lst = lst->next;
+        while (lst)
+        {
+            ft_readdir(lst->name, flags);
+            lst = lst->next;
+        }
+    }
+    else
+    {
+        ft_readdir(".", flags);
     }
     
-
    return (0);
 }
 //}
