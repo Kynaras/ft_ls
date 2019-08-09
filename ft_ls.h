@@ -33,7 +33,7 @@ typedef	struct flag_list
 int		ft_readflag(int argc, char **argv, f_list *flags);
 f_list	*ft_checkflags(int argc, char **argv, f_list *flags);
 void 	ft_lss(char *path, f_list flags);
-void 	ft_mergesort(n_list **lst);
+void 	ft_mergesort(n_list **lst, f_list flags);
 n_list 	*ls_lstnew(char *name);
 void 	ls_lstadd(n_list *head, n_list *new);
 n_list 	*ft_diread(char *path);

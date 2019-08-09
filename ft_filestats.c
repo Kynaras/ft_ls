@@ -73,5 +73,6 @@ void ft_filestats(char *path, char *origin)
 	ft_putchar('\t');
 	ft_timesplit(ctime(&sb.st_mtimespec.tv_sec));
 	}
+	printf("%s", ctime(&sb.st_mtimespec.tv_nsec));
 	free(str);
 }
