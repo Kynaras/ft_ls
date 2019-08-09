@@ -56,9 +56,8 @@ n_list *sortlist(n_list *a, n_list *b, f_list flags)
 	}
 
 	if (flags.time == 1)
-	{
-		
-	}
+		ft_timecmp();
+	
 	if (ft_strcmp((*a).name, (*b).name) <= 0)
 	{
 		result = a;
@@ -68,6 +67,7 @@ n_list *sortlist(n_list *a, n_list *b, f_list flags)
 	{
 		result = b;
 		result->next = sortlist(a, b->next, flags);
+	}
 	} 
 	return (result);
 }
