@@ -23,9 +23,9 @@ n_list *ft_arglst(int argc, char **argv, int i)
 	while (index < argc)
 	{
 		if (args == NULL)
-			args = ls_lstnew(argv[index]);
+			args = ls_lstnew(argv[index], ".");
 		else
-			ls_lstadd(args, ls_lstnew(argv[index]));
+			ls_lstadd(args, ls_lstnew(argv[index], "."));
 		index++;
 	}
 	return (args);

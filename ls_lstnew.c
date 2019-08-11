@@ -14,7 +14,7 @@
 #include <stddef.h>
 #include <stdlib.h>
 
-n_list *ls_lstnew(char *str)
+n_list *ls_lstnew(char *str, char *path)
 {
 	n_list *new;
 
@@ -22,6 +22,9 @@ n_list *ls_lstnew(char *str)
 	if (new == NULL)
 		return (NULL);
 	new->name = ft_strdup(str);
+	new->path = ft_strdup(path);
+	ft_join(&new->path, "/");
+	ft_join(&new->path, str);
 	new->next = NULL;
 	return (new);
 }

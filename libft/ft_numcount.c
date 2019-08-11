@@ -15,9 +15,7 @@
 int	ft_numcount(long int n)
 {
 	int			size;
-	long int	rem;
 
-	rem = 0;
 	size = 0;
 	if (n < 0)
 	{
@@ -28,7 +26,6 @@ int	ft_numcount(long int n)
 		size++;
 	while (n != 0)
 	{
-		rem = n % 10;
 		n = n / 10;
 		size++;
 	}

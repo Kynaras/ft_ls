@@ -17,7 +17,6 @@ int main(int argc, char **argv)
     char error;
     n_list *lst;
     f_list flags;
-    int ers;
     int i;
 
     i = 0;
@@ -34,7 +33,6 @@ int main(int argc, char **argv)
         ft_putstr("\nusage: ft_ls [-Ralrt] [file ...]");
         return (0);
     }
-    ers = ft_flagcount(&flags);
     if (argc == 1)
     {
         ft_readdir(".", flags);
@@ -43,7 +41,7 @@ int main(int argc, char **argv)
     else if (argc >= 2)
     {
         lst = ft_arglst(argc, argv, i);
-        ft_mergesort(&lst);
+        ft_mergesort(&lst, flags);
     }
 
     if (lst != NULL)

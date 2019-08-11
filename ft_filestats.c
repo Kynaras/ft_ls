@@ -71,8 +71,8 @@ void ft_filestats(char *path, char *origin)
 	ft_putchar('\t');
 	ft_putlonglong(sb.st_size);
 	ft_putchar('\t');
-	ft_timesplit(ctime(&sb.st_mtimespec.tv_sec));
+	ft_timesplit(ctime(&sb.st_mtime));
 	}
-	printf("%s", ctime(&sb.st_mtimespec.tv_nsec));
+	//printf("%s", ctime(&sb.st_mtime));
 	free(str);
 }

@@ -20,6 +20,7 @@ void ft_dellst(n_list *lst)
 	{
 		tmp = lst->next;
 		free(lst->name);
+		free(lst->path);
 		free(lst);
 		lst = tmp;
 	}

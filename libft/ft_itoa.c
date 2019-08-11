@@ -15,9 +15,7 @@
 static int	st_malloc(int n)
 {
 	int size;
-	int rem;
 
-	rem = 0;
 	size = 0;
 	if (n < 0)
 	{
@@ -28,7 +26,6 @@ static int	st_malloc(int n)
 		size++;
 	while (n != 0)
 	{
-		rem = n % 10;
 		n = n / 10;
 		size++;
 	}
@@ -59,7 +56,6 @@ static char	*st_string(char *str, int size, int n)
 
 char		*ft_itoa(int n)
 {
-	int		rem;
 	int		size;
 	char	*str;
 
@@ -71,7 +67,6 @@ char		*ft_itoa(int n)
 	}
 	size = st_malloc(n);
 	str = ft_strnew(size);
-	rem = 0;
 	if (str == NULL)
 		return (NULL);
 	size--;

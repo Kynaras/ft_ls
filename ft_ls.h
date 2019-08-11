@@ -11,13 +11,14 @@
 # include <string.h>
 # include "libft/libft.h" 
 # include <pwd.h>
-# include <uuid/uuid.h>
+//# include <uuid/uuid.h>
 # include <grp.h>
 # include <time.h>
 
 typedef struct name_list
 {
 	char *name;
+	char *path;
 	struct name_list *next;
 } n_list;
 
@@ -30,11 +31,12 @@ typedef	struct flag_list
 	unsigned int	list : 1;
 } f_list;
 
+void	ft_regcomp(n_list *a, n_list *b, n_list **result, f_list flags);
 int		ft_readflag(int argc, char **argv, f_list *flags);
 f_list	*ft_checkflags(int argc, char **argv, f_list *flags);
 void 	ft_lss(char *path, f_list flags);
 void 	ft_mergesort(n_list **lst, f_list flags);
-n_list 	*ls_lstnew(char *name);
+n_list 	*ls_lstnew(char *name, char *path);
 void 	ls_lstadd(n_list *head, n_list *new);
 n_list 	*ft_diread(char *path);
 n_list	*ft_makelst(DIR *dr);
@@ -48,5 +50,7 @@ char	ft_finderror(int argc, char **argv);
 n_list *ft_arglst(int argc, char **argv, int i);
 void	ft_filestats(char *path, char *origin);
 void	ft_timesplit(char *str);
+n_list *sortlist(n_list *a, n_list *b, f_list flags);
+void ft_timecmp(n_list *a, n_list *b, n_list **result, f_list flags);
 
 #endif

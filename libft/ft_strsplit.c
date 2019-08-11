@@ -93,14 +93,12 @@ char				**ft_strsplit(char const *s, char c)
 {
 	size_t	i;
 	size_t	size;
-	size_t	j;
 	char	**arr;
 
 	if (s == NULL)
 		return (NULL);
 	size = st_count(s, c);
 	i = 0;
-	j = 0;
 	arr = (char**)malloc(st_count(s, c) * sizeof(char *) + 1);
 	if (arr == NULL)
 		return (NULL);

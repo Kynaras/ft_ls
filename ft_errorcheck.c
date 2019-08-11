@@ -22,9 +22,9 @@ void 	ft_errorcheck(char *str, n_list **lst, n_list **dirs)
 			if (errno == ENOTDIR)
 			{
 				if (lst == NULL)
-					*lst = ls_lstnew(str);
+					*lst = ls_lstnew(str, ".");
 				else
-					ls_lstadd(*lst, ls_lstnew(str));
+					ls_lstadd(*lst, ls_lstnew(str, "."));
 			}
 			else if (errno == ENOENT)
 				perror("Error ");			
@@ -32,8 +32,8 @@ void 	ft_errorcheck(char *str, n_list **lst, n_list **dirs)
 	else
 	{
 		if (dirs == NULL)
-			*dirs = ls_lstnew(str);
+			*dirs = ls_lstnew(str,".");
 		else
-			ls_lstadd(*dirs, ls_lstnew(str));
+			ls_lstadd(*dirs, ls_lstnew(str, "."));
 	}
 }

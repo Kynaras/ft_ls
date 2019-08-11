@@ -41,37 +41,6 @@ void	splitlist(n_list *original, n_list **first, n_list **second)
 	count2->next = NULL;
 }
 
-n_list *sortlist(n_list *a, n_list *b, f_list flags)
-{
-	n_list *result;
-	result = NULL;
-
-	if (a == NULL)
-	{
-		return (b);
-	}
-	if (b == NULL)
-	{
-		return (a);
-	}
-
-	if (flags.time == 1)
-		ft_timecmp();
-	
-	if (ft_strcmp((*a).name, (*b).name) <= 0)
-	{
-		result = a;
-		result->next = sortlist(a->next, b, flags);
-	}
-	else
-	{
-		result = b;
-		result->next = sortlist(a, b->next, flags);
-	}
-	} 
-	return (result);
-}
-
 void	ft_mergesort(n_list **lst, f_list flags)
 {
 	n_list *head = *lst;
@@ -83,8 +52,8 @@ void	ft_mergesort(n_list **lst, f_list flags)
 		return ;
 	}
 
-	splitlist(head, &a, &b), flags;
-	ft_mergesort(&a);
-	ft_mergesort(&b);
-	*lst = sortlist(a, b);
+	splitlist(head, &a, &b);
+	ft_mergesort(&a, flags);
+	ft_mergesort(&b, flags);
+	*lst = sortlist(a, b, flags);
 }

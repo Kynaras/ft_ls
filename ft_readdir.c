@@ -55,18 +55,18 @@ n_list *ft_readdir(char *path, f_list flags)
         //         ls_lstadd(lst, ls_lstnew(de->d_name));
 
         if (lst == NULL)
-            lst = ls_lstnew(de->d_name);
+            lst = ls_lstnew(de->d_name, path);
         else if (lst != NULL)
-            ls_lstadd(lst, ls_lstnew(de->d_name));
+            ls_lstadd(lst, ls_lstnew(de->d_name, path));
         if (de->d_type == DT_DIR && ft_strcmp(de->d_name, ".") != 0 && ft_strcmp(de->d_name, "..") != 0 )
         {
             if (dirs == NULL)
-               dirs = ls_lstnew(de->d_name);
+               dirs = ls_lstnew(de->d_name, path);
             else
-                ls_lstadd(dirs, ls_lstnew(de->d_name));
+                ls_lstadd(dirs, ls_lstnew(de->d_name, path));
         }
     }
-    ft_mergesort(&lst);
+    ft_mergesort(&lst, flags);
     ft_printlst(lst, flags, path);
     ft_dellst(lst);
     closedir(dr);
