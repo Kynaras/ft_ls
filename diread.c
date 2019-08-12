@@ -27,12 +27,12 @@ n_list *ft_diread(char *path)
     dirs = ft_makelst(dr);
     while (dirs != NULL)
     {
-        free(str);
         str = ft_strdup(path);
         ft_join(&str, "/");
         ft_join(&str, (*dirs).name);
         ft_diread(str);
         dirs = dirs->next;
+        free(str);
     }
     closedir(dr);
     return (dirs);

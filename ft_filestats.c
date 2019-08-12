@@ -16,7 +16,7 @@ void ft_perms(struct stat sb, int i)
 {
 	if (i == 0 && S_ISDIR(sb.st_mode))
 			ft_putchar('d');
-	else if (i == 0 && S_ISLNK (sb.st_mode))
+	else if (i == 0 && S_ISLNK(sb.st_mode))
 			ft_putchar('l');
 	else if (i == 1 && S_IRUSR & sb.st_mode)
 			ft_putchar('r');
@@ -40,22 +40,12 @@ void ft_perms(struct stat sb, int i)
 			ft_putchar('-');
 		return;
 }
-void ft_filestats(char *path, char *origin)
+void ft_filestats(n_list *lst, struct stat sb)
 {
-	char *str;
 	int i;
-	struct stat sb;
+	size_t totsize;
+	size_t numsize;
 
-	str = ft_strdup(path);
-	if (ft_strcmp(path, origin) != 0)
-	{
-		free(str);
-		str = ft_strdup(origin);
-		ft_join(&str, "/");
-		ft_join(&str, path);
-	}
-	if (lstat(str, &sb) >= 0)
-	{
 	i = 0;
 	while (i < 10)
 	{
@@ -63,16 +53,21 @@ void ft_filestats(char *path, char *origin)
 		i++;
 	}
 	ft_putchar(' ');
+	totsize = ft_findsize(lst);
+	numsize = ft_numsize(sb.st_nlink);
+	i = totsize - numsize;
+	while (i)
+	{
+		ft_putchar(' ');
+		i--;
+	}
 	ft_putnbr((int)sb.st_nlink);
-	ft_putchar('\t');
+	ft_putchar(' ');
 	ft_putstr(getpwuid(sb.st_uid)->pw_name);
 	ft_putchar(' ');
 	ft_putstr((getgrgid(sb.st_gid)->gr_name));
-	ft_putchar('\t');
+	ft_putchar(' ');
 	ft_putlonglong(sb.st_size);
-	ft_putchar('\t');
+	//ft_putchar(' ');
 	ft_timesplit(ctime(&sb.st_mtime));
 	}
-	//printf("%s", ctime(&sb.st_mtime));
-	free(str);
-}

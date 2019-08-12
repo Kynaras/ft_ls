@@ -47,11 +47,9 @@ void	ft_mergesort(n_list **lst, f_list flags)
 	n_list *a = NULL;
 	n_list *b = NULL;
 
-	if (*lst == NULL || (*lst)->next == NULL)
-	{
+	if (*lst == NULL || (*lst)->next == NULL)	
 		return ;
-	}
-
+	
 	splitlist(head, &a, &b);
 	ft_mergesort(&a, flags);
 	ft_mergesort(&b, flags);

@@ -12,27 +12,52 @@
 
 #include "ft_ls.h"
 
-void ft_printlst(n_list *lst, f_list flags, char *path)
+void    ft_totalsize(n_list *lst)
 {
+    long long size;
+	
+    size = 0;
+    while (lst)
+    { 
+        size += lst->sb.st_blocks;
+        lst = lst->next;
+    }
+    ft_putstr("total ");
+    ft_putlonglong(size);
+    ft_putchar('\n');
+}
+
+void ft_printlst(n_list *lst, f_list flags)
+{
+    n_list *tmp;
+
+    tmp = lst;
+    if (flags.list == 1 && lst != NULL)
+    {
+        ft_structstat(lst);
+        ft_totalsize(lst);
+    }
 	while (lst != NULL)
     {   
         if (*lst->name == '.' && flags.hidden == 1) 
         {
              if (flags.list == 1)
              {
-                 ft_filestats(lst->name, path);
+                 ft_filestats(tmp, lst->sb);
                  ft_putchar(' ');
              }
-             printf("%s\n", lst->name);
+             ft_putstr(lst->name);
+             ft_putchar('\n');
         }
         else if (*lst->name != '.')
         {
             if (flags.list == 1)
              {
-                 ft_filestats(lst->name, path);
+                 ft_filestats(tmp, lst->sb);
                  ft_putchar(' ');
              }
-            printf("%s\n", lst->name);
+            ft_putstr(lst->name);
+            ft_putchar('\n');
         }    
         lst = lst->next;
     }

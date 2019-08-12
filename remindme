@@ -1,1 +1,1 @@
-gcc  -g testf.c ft_readdir.c ft_readflag.c ft_finderror.c ft_errorcheck.c ft_printlst.c ft_mergesort.c ft_dellst.c ft_arglst.c ls_lstadd.c ls_lstnew.c ft_flagcount.c ft_flagset.c ft_filestats.c ft_timesplit.c libft/libft.a
+gcc  -g testf.c ft_readdir.c ft_readflag.c ft_finderror.c ft_errorcheck.c ft_printlst.c ft_mergesort.c ft_dellst.c ft_arglst.c ls_lstadd.c ls_lstnew.c ft_flagcount.c ft_flagset.c ft_filestats.c ft_timesplit.c  ft_findsize.c ft_numsize.c ft_structstat.c sortlist.c ft_regcomp.c ft_timecmp.c libft/libft.a

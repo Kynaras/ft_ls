@@ -14,77 +14,57 @@
 
 n_list *ft_readdir(char *path, f_list flags)
 {
-	DIR *dr;
-	struct dirent *de;
-	n_list *lst;
-    n_list *dirs;
-    char *str;
+	v_list vars;
 	
-    dirs = NULL;
-    dr = NULL;
-    lst = NULL;
-	if(!(dr = opendir(path)))
+    vars.tmp = NULL;
+    vars.dirs = NULL;
+    vars.dr = NULL;
+    vars.lst = NULL;
+	if(!(vars.dr = opendir(path)))
     {
         if (errno == EACCES || errno == ENOENT)
             perror("Error ");
         else if (errno == ENOTDIR)
-            printf("%s\n", path);
-        return (lst);
+            ft_putstr(path);
+            ft_putchar('\n');
+        return (vars.lst);
     }
-	while ((de = readdir(dr)) != NULL)
+	while ((vars.de = readdir(vars.dr)) != NULL)
     {
-        // if (lst == NULL && ft_strcmp(path, ".") != 0)
-        //     {
-        //         str = ft_strdup(path);
-        //         ft_join(&str, "/");
-        //         ft_join(&str, de->d_name);
-        //         lst = ls_lstnew(str);
-        //         free(str);
-        //     }
-        // else if (lst != NULL && ft_strcmp(path, ".") != 0)
-        //     {
-        //         str = ft_strdup(path);
-        //         ft_join(&str, "/");
-        //         ft_join(&str, de->d_name);
-        //         ls_lstadd(lst, ls_lstnew(str));
-        //         free(str);
-        //     }
-        // else if (lst == NULL && ft_strcmp(path, ".") == 0)
-        //         lst = ls_lstnew(de->d_name);
-        // else if (lst != NULL && ft_strcmp(path, ".") == 0)
-        //         ls_lstadd(lst, ls_lstnew(de->d_name));
-
-        if (lst == NULL)
-            lst = ls_lstnew(de->d_name, path);
-        else if (lst != NULL)
-            ls_lstadd(lst, ls_lstnew(de->d_name, path));
-        if (de->d_type == DT_DIR && ft_strcmp(de->d_name, ".") != 0 && ft_strcmp(de->d_name, "..") != 0 )
+        if (vars.lst == NULL)
+            vars.lst = ls_lstnew(vars.de->d_name, path);
+        else if (vars.lst != NULL)
+            ls_lstadd(vars.lst, ls_lstnew(vars.de->d_name, path));
+        if (vars.de->d_type == DT_DIR && ft_strcmp(vars.de->d_name, ".") != 0 && ft_strcmp(vars.de->d_name, "..") != 0 )
         {
-            if (dirs == NULL)
-               dirs = ls_lstnew(de->d_name, path);
+            if (vars.dirs == NULL)
+               vars.dirs = ls_lstnew(vars.de->d_name, path);
             else
-                ls_lstadd(dirs, ls_lstnew(de->d_name, path));
+                ls_lstadd(vars.dirs, ls_lstnew(vars.de->d_name, path));
         }
     }
-    ft_mergesort(&lst, flags);
-    ft_printlst(lst, flags, path);
-    ft_dellst(lst);
-    closedir(dr);
-
+    ft_mergesort(&vars.dirs, flags);
+    ft_mergesort(&vars.lst, flags);
+    ft_printlst(vars.lst, flags);
+    ft_dellst(vars.lst);
+    closedir(vars.dr);
+  
+    vars.tmp = vars.dirs;
     if (flags.recursive == 1)
     {
-        while (dirs != NULL)
+        while (vars.dirs != NULL)
     {
-        str = ft_strdup(path);
-        ft_join(&str, "/");
-        ft_join(&str, (*dirs).name);
-        ft_putchar('\n');
-        ft_putstr(str);
-        ft_putstr(":\n");
-        ft_readdir(str, flags);
-        free(str);
-        dirs = dirs->next;
+        if (*vars.dirs->name != '.' || (flags.hidden == 1 && *vars.dirs->name == '.'))
+        {
+            
+            ft_putchar('\n');
+            ft_putstr(vars.dirs->name);
+            ft_putstr(":\n");
+            vars.lst = ft_readdir(vars.dirs->path, flags);
+            ft_dellst(vars.lst);
+        }
+        vars.dirs = vars.dirs->next;
     }
     }
-	return(dirs);
+	return(vars.tmp);
 }

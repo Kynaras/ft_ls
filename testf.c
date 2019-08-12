@@ -6,7 +6,7 @@
 /*   By: keverett <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 08:12:45 by keverett          #+#    #+#             */
-/*   Updated: 2019/07/15 08:14:53 by keverett         ###   ########.fr       */
+/*   Updated: 2019/08/12 10:36:26 by keverett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@ int main(int argc, char **argv)
     char error;
     n_list *lst;
     f_list flags;
+    n_list *dirs;
     int i;
 
+    lst = NULL;
     i = 0;
     ft_flagset(&flags);
     
@@ -35,7 +37,9 @@ int main(int argc, char **argv)
     }
     if (argc == 1)
     {
-        ft_readdir(".", flags);
+        dirs = ft_readdir(".", flags);
+        ft_dellst(dirs);
+	//	sleep (10);
         return (0);  
     }
     else if (argc >= 2)
@@ -44,6 +48,7 @@ int main(int argc, char **argv)
         ft_mergesort(&lst, flags);
     }
 
+    dirs = lst;
     if (lst != NULL)
     {
         while (lst)
@@ -54,9 +59,13 @@ int main(int argc, char **argv)
     }
     else
     {
-        ft_readdir(".", flags);
+        dirs = ft_readdir(".", flags);
+        //ft_dellst(dirs);
     }
-    
+
+    ft_dellst(dirs);
+
+  // sleep(10); 
    return (0);
 }
 //}

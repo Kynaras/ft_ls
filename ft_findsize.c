@@ -1,52 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_timesplit.c                                     :+:      :+:    :+:   */
+/*   ft_findsize.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: keverett <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/07 15:25:16 by keverett          #+#    #+#             */
-/*   Updated: 2019/08/12 10:35:38 by keverett         ###   ########.fr       */
+/*   Created: 2019/08/12 17:00:44 by keverett          #+#    #+#             */
+/*   Updated: 2019/08/12 17:02:12 by keverett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void ft_timesplit(char *str)
+size_t ft_findsize(n_list *lst)
 {
-	int i;
-
-	i = 1;
-	char **time;
-	char **seconds;
-
-	time = ft_strsplit(str, ' ');
-	while (time[i] && i <= 3)
-	{
-		ft_putchar(' ');
-		if(i == 3)
-		{
-			seconds = ft_strsplit(time[i], ':');
-			ft_putstr(seconds[0]);
-			ft_putchar(':');
-			ft_putstr(seconds[1]);
-		}
-		else
-			ft_putstr(time[i]);
-		i++;
-	} 
+	size_t size;
+	size_t num;
+	size_t i;
+	
+	num = 0;
 	i = 0;
-	while (time[i])
+	size = 1;
+
+	while (lst)
 	{
-		free(time[i]);
-		i++;
+		if(lst->sb.st_blocks > num)
+			num = lst->sb.st_blocks;
+		lst = lst->next;
 	}
-	free (time);
-	i = 0;
-	while (seconds[i])
+
+	while (num)
 	{
-		free(seconds[i]);
+		num /= 10;
 		i++;
-	}
-	free(seconds);
+	}	
+	i = i == 0 ? 1 : i;
+	return (i);
 }
