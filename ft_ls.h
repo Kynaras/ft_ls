@@ -14,6 +14,7 @@
 //# include <uuid/uuid.h>
 # include <grp.h>
 # include <time.h>
+# include <unistd.h>
 
 typedef struct name_list
 {
@@ -58,7 +59,7 @@ void	ft_only_names(int argc, char **argv);
 int		ft_flagcount(f_list *flags);
 void 	ft_dellst(n_list *lst);
 char	ft_finderror(int argc, char **argv);
-n_list	*ft_arglst(int argc, char **argv, int i);
+n_list	*ft_arglst(int argc, char **argv, int i, int type);
 void	ft_filestats(n_list *lst, struct stat sb);
 void	ft_timesplit(char *str);
 n_list	*sortlist(n_list *a, n_list *b, f_list flags);
@@ -68,4 +69,6 @@ void	ft_structstat(n_list *lst);
 size_t 	ft_numsize(long long number);
 size_t	ft_findtotsize(n_list *lst, int type);
 size_t 	ft_findlen(char *str);
+char	*ft_linkname(char *path);
+
 #endif

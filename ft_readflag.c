@@ -25,7 +25,7 @@ int		ft_readflag(int argc, char **argv, f_list *flags)
 		{
 			if (ft_strcmp(argv[i], "--") == 0)
 				return(i);
-			if (argv[i][j] == 't')
+			else if (argv[i][j] == 't')
 				flags->time = 1;
 			else if (argv[i][j] == 'l')
 				flags->list = 1;

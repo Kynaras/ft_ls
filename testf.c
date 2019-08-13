@@ -19,6 +19,7 @@ int main(int argc, char **argv)
     f_list flags;
     n_list *dirs;
     int i;
+    int j;
 
     lst = NULL;
     i = 0;
@@ -35,36 +36,35 @@ int main(int argc, char **argv)
         ft_putstr("\nusage: ft_ls [-Ralrt] [file ...]");
         return (0);
     }
-    if (argc == 1 || i == 1)
+    if (argc == 1 || (argc - i == 1 && ft_strcmp(argv[i], "--") == 0))
     {
         dirs = ft_readdir(".", flags);
         ft_dellst(dirs);
 	//	sleep (10);
         return (0);  
     }
+
     else if (argc >= 2)
     {
-        lst = ft_arglst(argc, argv, i);
-        ft_mergesort(&lst, flags);
-    }
-
-    dirs = lst;
-    if (lst != NULL)
-    {
-        while (lst)
+        j = 0;
+        while (++j <= 2)
         {
-            ft_readdir(lst->name, flags);
-            lst = lst->next;
+            lst = j == 1 ? ft_arglst(argc, argv, i, 1) : ft_arglst(argc, argv, i, 2);
+            ft_mergesort(&lst, flags);
+            dirs = lst;
+            if (lst != NULL)
+            {
+                while (lst)
+                {
+                    ft_readdir(lst->name, flags);
+                    lst = lst->next;
+                }
+            }
+            // else
+            //     dirs = ft_readdir(".", flags);
+            ft_dellst(dirs);
         }
     }
-    else
-    {
-        dirs = ft_readdir(".", flags);
-        //ft_dellst(dirs);
-    }
-
-    ft_dellst(dirs);
-
   // sleep(10); 
    return (0);
 }

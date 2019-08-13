@@ -12,11 +12,11 @@
 
 #include "ft_ls.h"
 
-n_list *ft_arglst(int argc, char **argv, int i)
+n_list *ft_arglst(int argc, char **argv, int i, int type)
 {
 	int index;
 	n_list *args;
-
+	DIR *dr;
 	args = NULL;
 	index = i;
 
@@ -25,11 +25,23 @@ n_list *ft_arglst(int argc, char **argv, int i)
 
 	while (index < argc)
 	{
-		if (args == NULL)
-			args = ls_lstnew(argv[index], ".");
-		else
-			ls_lstadd(args, ls_lstnew(argv[index], "."));
+		if(!(dr=opendir(argv[index])) && type == 1)
+		{
+			if (args == NULL)
+				args = ls_lstnew(argv[index], ".");
+			else
+				ls_lstadd(args, ls_lstnew(argv[index], "."));
+		}
+		else if ((dr = opendir(argv[index])) && type == 2)
+		{
+			if (args == NULL)
+				args = ls_lstnew(argv[index], ".");
+			else
+				ls_lstadd(args, ls_lstnew(argv[index], "."));
+			closedir(dr);
+		}
 		index++;
+
 	}
 	return (args);
 }
