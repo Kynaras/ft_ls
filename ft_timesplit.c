@@ -19,11 +19,17 @@ void ft_timesplit(char *str)
 	i = 1;
 	char **time;
 	char **seconds;
+	char *tmp;
 
 	time = ft_strsplit(str, ' ');
+	tmp = time[1];
+	time[1] = time[2];
+	time[2] = tmp;
 	while (time[i] && i <= 3)
 	{
 		ft_putchar(' ');
+		if (i == 1 && ft_findlen(time[i]) < 2)
+				ft_putchar(' ');
 		if(i == 3)
 		{
 			seconds = ft_strsplit(time[i], ':');

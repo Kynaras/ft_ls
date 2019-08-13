@@ -1,35 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_arglst.c                                        :+:      :+:    :+:   */
+/*   ft_findlen.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: keverett <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/06 15:37:00 by keverett          #+#    #+#             */
-/*   Updated: 2019/08/06 15:37:01 by keverett         ###   ########.fr       */
+/*   Created: 2019/08/13 08:12:03 by keverett          #+#    #+#             */
+/*   Updated: 2019/08/13 08:12:06 by keverett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-n_list *ft_arglst(int argc, char **argv, int i)
+size_t ft_findlen(char *str)
 {
-	int index;
-	n_list *args;
+	int i;
 
-	args = NULL;
-	index = i;
+	i = 0;
 
-	if (ft_strcmp(argv[index], "--") == 0)
-		index++;
-
-	while (index < argc)
+	while (str[i])
 	{
-		if (args == NULL)
-			args = ls_lstnew(argv[index], ".");
-		else
-			ls_lstadd(args, ls_lstnew(argv[index], "."));
-		index++;
+		i++;
 	}
-	return (args);
+	return(i);
 }

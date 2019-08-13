@@ -12,7 +12,7 @@
 
 #include "ft_ls.h"
 
-size_t ft_findsize(n_list *lst)
+size_t ft_findsize(n_list *lst, int type)
 {
 	size_t size;
 	size_t num;
@@ -24,8 +24,16 @@ size_t ft_findsize(n_list *lst)
 
 	while (lst)
 	{
-		if(lst->sb.st_blocks > num)
-			num = lst->sb.st_blocks;
+		if (type == 1)
+		{
+			if(lst->sb.st_blocks > num)
+				num = lst->sb.st_blocks;
+		}
+		else if (type == 2)
+		{
+			if (lst->sb.st_size > num)
+				num = lst->sb.st_size;
+		}
 		lst = lst->next;
 	}
 

@@ -20,13 +20,23 @@ n_list *ft_readdir(char *path, f_list flags)
     vars.dirs = NULL;
     vars.dr = NULL;
     vars.lst = NULL;
+
+    //memleaks will probably occurs here
 	if(!(vars.dr = opendir(path)))
     {
         if (errno == EACCES || errno == ENOENT)
             perror("Error ");
         else if (errno == ENOTDIR)
+        {
+            vars.lst = ls_lstnew(path, path);
+            free(vars.lst->path);
+            vars.lst->path = ft_strdup(vars.lst->name);
+            ft_structstat(vars.lst);
+            ft_filestats(vars.lst, vars.lst->sb);
+            ft_putchar(' ');
             ft_putstr(path);
             ft_putchar('\n');
+        }
         return (vars.lst);
     }
 	while ((vars.de = readdir(vars.dr)) != NULL)

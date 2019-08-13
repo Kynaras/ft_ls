@@ -19,6 +19,9 @@ size_t ft_numsize(long long number)
 
 	i = 0;
 
+	if (number == 0)
+		return (1);
+
 	num = number;
 	while (num)
 	{

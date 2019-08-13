@@ -52,8 +52,8 @@ void ft_filestats(n_list *lst, struct stat sb)
 		ft_perms(sb, i);
 		i++;
 	}
-	ft_putchar(' ');
-	totsize = ft_findsize(lst);
+
+	totsize = ft_findsize(lst, 1);
 	numsize = ft_numsize(sb.st_nlink);
 	i = totsize - numsize;
 	while (i)
@@ -63,10 +63,40 @@ void ft_filestats(n_list *lst, struct stat sb)
 	}
 	ft_putnbr((int)sb.st_nlink);
 	ft_putchar(' ');
+
+	totsize = ft_findtotsize(lst, 1);
+	numsize = ft_findlen(getpwuid(sb.st_uid)->pw_name);
+
+	i = totsize - numsize; 
+	while (i)
+	{
+		ft_putchar(' ');
+		i--;
+	}
 	ft_putstr(getpwuid(sb.st_uid)->pw_name);
 	ft_putchar(' ');
+	ft_putchar(' ');
+	totsize = ft_findtotsize(lst, 2);
+	numsize = ft_findlen(getgrgid(sb.st_gid)->gr_name);
+
+	i = totsize - numsize;
+	while (i)
+	{
+		ft_putchar(' ');
+		i--;
+	}
 	ft_putstr((getgrgid(sb.st_gid)->gr_name));
 	ft_putchar(' ');
+	ft_putchar(' ');
+	totsize = ft_findsize(lst, 2);
+	numsize = ft_numsize(sb.st_size);
+
+	i = totsize - numsize;
+	while (i)
+	{
+		ft_putchar(' ');
+		i--;
+	}
 	ft_putlonglong(sb.st_size);
 	//ft_putchar(' ');
 	ft_timesplit(ctime(&sb.st_mtime));

@@ -63,8 +63,9 @@ void	ft_filestats(n_list *lst, struct stat sb);
 void	ft_timesplit(char *str);
 n_list	*sortlist(n_list *a, n_list *b, f_list flags);
 void	ft_timecmp(n_list *a, n_list *b, n_list **result, f_list flags);
-size_t	ft_findsize(n_list *lst);
+size_t	ft_findsize(n_list *lst, int type);
 void	ft_structstat(n_list *lst);
 size_t 	ft_numsize(long long number);
-
+size_t	ft_findtotsize(n_list *lst, int type);
+size_t 	ft_findlen(char *str);
 #endif
