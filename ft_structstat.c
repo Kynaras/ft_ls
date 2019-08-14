@@ -14,7 +14,6 @@
 
 void	ft_structstat(n_list *lst)
 {
-	struct stat sb;
 	while (lst)
 	{
 		lstat(lst->path, &lst->sb);

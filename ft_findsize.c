@@ -15,7 +15,7 @@
 size_t ft_findsize(n_list *lst, int type)
 {
 	size_t size;
-	size_t num;
+	long long num;
 	size_t i;
 	
 	num = 0;

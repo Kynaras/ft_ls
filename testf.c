@@ -36,7 +36,7 @@ int main(int argc, char **argv)
         ft_putstr("\nusage: ft_ls [-Ralrt] [file ...]");
         return (0);
     }
-    if (argc == 1 || argc == i || (argc - i == 1 && ft_strcmp(argv[i], "--") == 0))
+    if (argc == 1 || argc == i ||(argc - i == 1 && ft_strcmp(argv[i], "--") == 0))
     {
         dirs = ft_readdir(".", flags);
         ft_dellst(dirs);
@@ -51,13 +51,21 @@ int main(int argc, char **argv)
         {
             lst = j == 1 ? ft_arglst(argc, argv, i, 1) : ft_arglst(argc, argv, i, 2);
             ft_mergesort(&lst, flags);
+            ft_structstat(lst);
             dirs = lst;
             if (lst != NULL)
             {
                 while (lst)
                 {
+                    if (j >= 2 && S_ISDIR(lst->sb.st_mode))
+                    {
+                        ft_putstr(lst->name);
+                        ft_putstr(":\n");
+                    }
                     ft_readdir(lst->name, flags);
                     lst = lst->next;
+                    if (j >=2)
+                        j++;
                 }
             }
             // else
