@@ -16,10 +16,26 @@ char *ft_linkname(char *path)
 {
 	char *buf;
 	size_t len;
+	size_t size;
 
-	len = readlink(path, buf, 0);
-	buf = ft_memalloc(len + 1);
-	ft_bzero(buf, len + 1);
+	len = 1024;
+	size = 1024;
+	while (size == len)
+	{
+		buf = ft_memalloc(len);
+		size = readlink(path, buf, len);
+		free(buf);
+		if (size == len)
+		{
+			len += size;
+			size += size;
+		}
+		else if (size < len)
+			break;
+	}
+	len = size + 1;
+	buf = ft_memalloc(len);
 	readlink(path, buf, len);
+	buf[len - 1] = '\0';
 	return (buf);
 }

@@ -25,7 +25,11 @@ n_list *ft_readdir(char *path, f_list flags)
 	if(!(vars.dr = opendir(path)))
     {
         if (errno == EACCES || errno == ENOENT)
-            perror("Error ");
+            {
+                ft_putstr("ft_ls: ");
+                ft_putstr(path);
+                perror(" ");
+            }
         else if (errno == ENOTDIR)
         {
             vars.lst = ls_lstnew(path, path);

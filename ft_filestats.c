@@ -54,7 +54,9 @@ void ft_filestats(n_list *lst, struct stat sb)
 	}
 
 	totsize = ft_findsize(lst, 1);
+//	ft_putlonglong(totsize);
 	numsize = ft_numsize(sb.st_nlink);
+//	ft_putlonglong(numsize);
 	i = totsize - numsize;
 	while (i)
 	{

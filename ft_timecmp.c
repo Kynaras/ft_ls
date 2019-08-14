@@ -20,7 +20,7 @@ void ft_timecmp(n_list *a, n_list *b, n_list **result, f_list flags)
     lstat(a->path, &ab);
     lstat(b->path, &bb);
 
-    if (ab.st_mtime >= bb.st_mtime)
+    if (ab.st_mtime > bb.st_mtime || (ab.st_mtimespec.tv_sec > bb.st_mtimespec.tv_sec && ab.st_mtime > bb.st_mtime) || (ab.st_mtimespec.tv_nsec >= bb.st_mtimespec.tv_nsec && bb.st_mtimespec.tv_sec && ab.st_mtime > bb.st_mtime))
 	{
 		(*result) = flags.reverse ? b : a;
 		(*result)->next = flags.reverse ? sortlist(b->next, a, flags) : sortlist (a->next, b, flags);

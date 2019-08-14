@@ -26,8 +26,8 @@ size_t ft_findsize(n_list *lst, int type)
 	{
 		if (type == 1)
 		{
-			if(lst->sb.st_blocks > num)
-				num = lst->sb.st_blocks;
+			if(lst->sb.st_nlink > num)
+				num = lst->sb.st_nlink;
 		}
 		else if (type == 2)
 		{
@@ -43,5 +43,5 @@ size_t ft_findsize(n_list *lst, int type)
 		i++;
 	}	
 	i = i == 0 ? 1 : i;
-	return (i);
+	return (i +1);
 }

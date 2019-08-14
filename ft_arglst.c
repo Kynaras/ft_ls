@@ -20,8 +20,8 @@ n_list *ft_arglst(int argc, char **argv, int i, int type)
 	args = NULL;
 	index = i;
 
-	if (ft_strcmp(argv[index], "--") == 0)
-		index++;
+	  if (ft_strcmp(argv[index], "--") == 0)
+	 	index++;
 
 	while (index < argc)
 	{

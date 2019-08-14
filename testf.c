@@ -36,7 +36,7 @@ int main(int argc, char **argv)
         ft_putstr("\nusage: ft_ls [-Ralrt] [file ...]");
         return (0);
     }
-    if (argc == 1 || (argc - i == 1 && ft_strcmp(argv[i], "--") == 0))
+    if (argc == 1 || argc == i || (argc - i == 1 && ft_strcmp(argv[i], "--") == 0))
     {
         dirs = ft_readdir(".", flags);
         ft_dellst(dirs);
