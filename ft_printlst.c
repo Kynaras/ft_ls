@@ -43,7 +43,7 @@ void ft_printlst(n_list *lst, f_list flags)
         {
              if (flags.list == 1)
              {
-                 ft_filestats(tmp, lst->sb);
+                 ft_filestats(tmp, lst->sb, lst->path);
                  ft_putchar(' ');
              }
              ft_putstr(lst->name);
@@ -58,7 +58,7 @@ void ft_printlst(n_list *lst, f_list flags)
         {
             if (flags.list == 1)
              {
-                 ft_filestats(tmp, lst->sb);
+                 ft_filestats(tmp, lst->sb, lst->path);
                  ft_putchar(' ');
              }
             ft_putstr(lst->name);

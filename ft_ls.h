@@ -15,6 +15,7 @@
 # include <grp.h>
 # include <time.h>
 # include <unistd.h>
+#include <sys/xattr.h>
 
 typedef struct name_list
 {
@@ -60,7 +61,7 @@ int		ft_flagcount(f_list *flags);
 void 	ft_dellst(n_list *lst);
 char	ft_finderror(int argc, char **argv);
 n_list	*ft_arglst(int argc, char **argv, int i, int type);
-void	ft_filestats(n_list *lst, struct stat sb);
+void	ft_filestats(n_list *lst, struct stat sb, char *path);
 void	ft_timesplit(char *str);
 n_list	*sortlist(n_list *a, n_list *b, f_list flags);
 void	ft_timecmp(n_list *a, n_list *b, n_list **result, f_list flags);
@@ -70,5 +71,6 @@ size_t 	ft_numsize(long long number);
 size_t	ft_findtotsize(n_list *lst, int type);
 size_t 	ft_findlen(char *str);
 char	*ft_linkname(char *path);
+int		ft_attr(char *path);
 
 #endif

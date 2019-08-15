@@ -6,7 +6,7 @@
 /*   By: keverett <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 12:39:39 by keverett          #+#    #+#             */
-/*   Updated: 2019/07/05 17:19:18 by keverett         ###   ########.fr       */
+/*   Updated: 2019/08/15 17:07:10 by keverett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,5 @@ void	ft_join(char **line, char *buf)
 		*line = ft_memalloc(1);
 	temp = ft_strjoin(*line, buf);
 	free(*line);
-	*line = ft_strdup(temp);
-	free(temp);
+	*line = temp;
 }

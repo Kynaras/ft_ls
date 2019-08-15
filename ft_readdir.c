@@ -33,10 +33,10 @@ n_list *ft_readdir(char *path, f_list flags)
         else if (errno == ENOTDIR)
         {
             vars.lst = ls_lstnew(path, path);
-            free(vars.lst->path);
-            vars.lst->path = ft_strdup(vars.lst->name);
+            // free(vars.lst->path);
+            // vars.lst->path = ft_strdup(vars.lst->name);
             ft_structstat(vars.lst);
-            ft_filestats(vars.lst, vars.lst->sb);
+            ft_filestats(vars.lst, vars.lst->sb, vars.lst->path);
             ft_putchar(' ');
             ft_putstr(path);
             ft_putchar('\n');
@@ -57,6 +57,7 @@ n_list *ft_readdir(char *path, f_list flags)
                 ls_lstadd(vars.dirs, ls_lstnew(vars.de->d_name, path));
         }
     }
+   // printf("HERE is PaTh %s\n", vars.lst->path);
     ft_mergesort(&vars.dirs, flags);
     ft_mergesort(&vars.lst, flags);
     ft_printlst(vars.lst, flags);

@@ -40,11 +40,12 @@ void ft_perms(struct stat sb, int i)
 			ft_putchar('-');
 		return;
 }
-void ft_filestats(n_list *lst, struct stat sb)
+void ft_filestats(n_list *lst, struct stat sb, char *path)
 {
+	//printf("Path given in lst == %s", lst->path);
 	int i;
-	size_t totsize;
-	size_t numsize;
+	int totsize;
+	int numsize;
 
 	i = 0;
 	while (i < 10)
@@ -52,11 +53,16 @@ void ft_filestats(n_list *lst, struct stat sb)
 		ft_perms(sb, i);
 		i++;
 	}
+	if((i = ft_attr(path)))
+		ft_putchar('@');
+	else
+		ft_putchar(' ');
+	
 
 	totsize = ft_findsize(lst, 1);
-//	ft_putlonglong(totsize);
+
 	numsize = ft_numsize(sb.st_nlink);
-//	ft_putlonglong(numsize);
+
 	i = totsize - numsize;
 	while (i)
 	{
@@ -67,19 +73,41 @@ void ft_filestats(n_list *lst, struct stat sb)
 	ft_putchar(' ');
 
 	totsize = ft_findtotsize(lst, 1);
-	numsize = ft_findlen(getpwuid(sb.st_uid)->pw_name);
 
+	if (!getpwuid(sb.st_uid))
+		numsize = ft_numcount(sb.st_uid);
+	else
+	{
+		numsize = ft_findlen(getpwuid(sb.st_uid)->pw_name);
+	}
+	
 	i = totsize - numsize; 
-	while (i)
+	while (i > 0)
 	{
 		ft_putchar(' ');
 		i--;
 	}
-	ft_putstr(getpwuid(sb.st_uid)->pw_name);
+	if (!getpwuid(sb.st_uid))
+	{
+		ft_putnbr(sb.st_uid);
+	}
+	else
+	 {
+		 ft_putstr(getpwuid(sb.st_uid)->pw_name);
+	 }
 	ft_putchar(' ');
 	ft_putchar(' ');
 	totsize = ft_findtotsize(lst, 2);
-	numsize = ft_findlen(getgrgid(sb.st_gid)->gr_name);
+
+	if (!getgrgid(sb.st_gid))
+	{
+		numsize = ft_numcount(sb.st_gid);
+	}
+	else
+	{
+		numsize = ft_findlen(getgrgid(sb.st_gid)->gr_name);
+	}
+	
 
 	i = totsize - numsize;
 	while (i)
@@ -87,7 +115,14 @@ void ft_filestats(n_list *lst, struct stat sb)
 		ft_putchar(' ');
 		i--;
 	}
-	ft_putstr((getgrgid(sb.st_gid)->gr_name));
+	if (!getgrgid(sb.st_gid))
+	{
+		ft_putnbr(sb.st_gid);
+	}
+	else
+	 {
+		 ft_putstr((getgrgid(sb.st_gid)->gr_name));
+	 }
 	ft_putchar(' ');
 	ft_putchar(' ');
 	totsize = ft_findsize(lst, 2);
@@ -100,6 +135,5 @@ void ft_filestats(n_list *lst, struct stat sb)
 		i--;
 	}
 	ft_putlonglong(sb.st_size);
-	//ft_putchar(' ');
 	ft_timesplit(ctime(&sb.st_mtime));
 	}
