@@ -12,33 +12,67 @@
 
 #include "ft_ls.h"
 
+void ft_user(struct stat sb, int i)
+{
+	if (i == 1)
+		S_IRUSR & sb.st_mode ? ft_putchar('r') : ft_putchar('-');
+	else if (i == 2)
+		S_IWUSR & sb.st_mode ? ft_putchar('w') : ft_putchar('-');
+	else if (i == 3)
+	{
+		if (S_IXUSR & sb.st_mode)
+			S_ISUID & sb.st_mode ? ft_putchar('s') : ft_putchar('x');
+		else if (!(S_IXUSR & sb.st_mode))
+			S_ISUID & sb.st_mode ? ft_putchar('S') : ft_putchar('-');
+	}
+}
+
+void ft_group(struct stat sb, int i)
+{
+	if (i == 4)
+		S_IRGRP & sb.st_mode ? ft_putchar('r') : ft_putchar('-');
+	else if (i == 5)
+		S_IWGRP & sb.st_mode ? ft_putchar('w') : ft_putchar('-');
+	else if (i == 6)
+	{	
+		if (S_IXGRP & sb.st_mode)
+			S_ISGID & sb.st_mode ? ft_putchar('s') : ft_putchar('x');
+		else if (!(S_IXGRP & sb.st_mode))
+			S_ISGID & sb.st_mode ? ft_putchar('S') : ft_putchar('-');
+	}
+}
+
+void ft_others(struct stat sb, int i)
+{
+	if (i == 7)
+			S_IROTH & sb.st_mode ? ft_putchar('r') : ft_putchar('-');
+	else if (i == 8)
+			S_IWOTH & sb.st_mode ? ft_putchar('w') : ft_putchar('-');
+	else if (i == 9)
+	{
+		if (S_IXOTH & sb.st_mode)
+			S_ISVTX & sb.st_mode ? ft_putchar('t') : ft_putchar('x');
+		else
+			S_ISVTX & sb.st_mode ? ft_putchar('T') : ft_putchar('-');
+
+	}
+}
 void ft_perms(struct stat sb, int i)
 {
 	if (i == 0 && S_ISDIR(sb.st_mode))
-			ft_putchar('d');
+		ft_putchar('d');
 	else if (i == 0 && S_ISLNK(sb.st_mode))
-			ft_putchar('l');
-	else if (i == 1 && S_IRUSR & sb.st_mode)
-			ft_putchar('r');
-	else if (i == 2 && S_IWUSR & sb.st_mode)
-			ft_putchar('w');
-	else if (i == 3 && S_IXUSR & sb.st_mode)
-			ft_putchar('x');
-	else if (i == 4 && S_IRGRP & sb.st_mode)
-			ft_putchar('r');
-	else if (i == 5 && S_IWGRP & sb.st_mode)
-			ft_putchar('w');
-	else if (i == 6 && S_IXGRP & sb.st_mode)
-			ft_putchar('x');
-	else if (i == 7 && S_IROTH & sb.st_mode)
-			ft_putchar('r');
-	else if (i == 8 && S_IWOTH & sb.st_mode)
-			ft_putchar('w');
-	else if (i == 9 && S_IXOTH & sb.st_mode)
-			ft_putchar('x');
-		else
-			ft_putchar('-');
-		return;
+		ft_putchar('l');
+	else if (i == 0)
+		ft_putchar('-');
+	else if (i >= 1 && i <= 3)
+		ft_user(sb, i);
+	else if (i >= 4 && i <= 6)
+		ft_group(sb, i);
+	else if (i >= 7 && i <= 9)
+		ft_others(sb, i);
+	
+	return ;
 }
 void ft_filestats(n_list *lst, struct stat sb, char *path)
 {
@@ -53,7 +87,7 @@ void ft_filestats(n_list *lst, struct stat sb, char *path)
 		ft_perms(sb, i);
 		i++;
 	}
-	if((i = ft_attr(path)))
+	if((i = ft_attr(path)) > 0)
 		ft_putchar('@');
 	else
 		ft_putchar(' ');

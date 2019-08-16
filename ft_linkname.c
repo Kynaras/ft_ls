@@ -12,7 +12,7 @@
 
 #include "ft_ls.h"
 
-char *ft_linkname(char *path)
+void	ft_linkname(char *path)
 {
 	char *buf;
 	size_t len;
@@ -37,5 +37,6 @@ char *ft_linkname(char *path)
 	buf = ft_memalloc(len);
 	readlink(path, buf, len);
 	buf[len - 1] = '\0';
-	return (buf);
+	ft_putstr(buf);
+	free(buf);
 }

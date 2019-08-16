@@ -15,9 +15,10 @@
 int	ft_attr(char *path)
 {
 	char *buf;
-	int i;
+	int i = 0;
 	
 	buf = NULL;
 	i = listxattr(path, buf, 1, XATTR_NOFOLLOW);
+	
 	return (i);
 }

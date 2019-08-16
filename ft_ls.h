@@ -70,7 +70,7 @@ void	ft_structstat(n_list *lst);
 size_t 	ft_numsize(long long number);
 size_t	ft_findtotsize(n_list *lst, int type);
 size_t 	ft_findlen(char *str);
-char	*ft_linkname(char *path);
+void 	ft_linkname(char *path);
 int		ft_attr(char *path);
 
 #endif

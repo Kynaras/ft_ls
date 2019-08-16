@@ -50,7 +50,7 @@ void ft_printlst(n_list *lst, f_list flags)
              if (S_ISLNK(lst->sb.st_mode))
              {
                  ft_putstr(" -> ");
-                 ft_putstr(ft_linkname(lst->path));
+                 ft_linkname(lst->path);
              }
              ft_putchar('\n');
         }
@@ -65,7 +65,7 @@ void ft_printlst(n_list *lst, f_list flags)
             if (S_ISLNK(lst->sb.st_mode))
              {
                  ft_putstr(" -> ");
-                 ft_putstr(ft_linkname(lst->path));
+                 ft_linkname(lst->path);
              }
             ft_putchar('\n');
         }    
