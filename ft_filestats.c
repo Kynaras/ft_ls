@@ -76,7 +76,6 @@ void ft_perms(struct stat sb, int i)
 }
 void ft_filestats(n_list *lst, struct stat sb, char *path)
 {
-	//printf("Path given in lst == %s", lst->path);
 	int i;
 	int totsize;
 	int numsize;
@@ -87,12 +86,9 @@ void ft_filestats(n_list *lst, struct stat sb, char *path)
 		ft_perms(sb, i);
 		i++;
 	}
-	if((i = ft_attr(path)) > 0)
-		ft_putchar('@');
-	else
-		ft_putchar(' ');
 	
-
+	ft_attr(path) > 0 ? ft_putchar('@') : ft_putchar(' ');
+	
 	totsize = ft_findsize(lst, 1);
 
 	numsize = ft_numsize(sb.st_nlink);

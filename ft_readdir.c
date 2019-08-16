@@ -21,7 +21,6 @@ n_list *ft_readdir(char *path, f_list flags)
     vars.dr = NULL;
     vars.lst = NULL;
 
-    //memleaks will probably occurs here
 	if(!(vars.dr = opendir(path)))
     {
         if (errno == EACCES || errno == ENOENT)
@@ -32,13 +31,15 @@ n_list *ft_readdir(char *path, f_list flags)
             }
         else if (errno == ENOTDIR)
         {
-            vars.lst = ls_lstnew(path, path);
-            // free(vars.lst->path);
-            // vars.lst->path = ft_strdup(vars.lst->name);
-            ft_structstat(vars.lst);
-            ft_filestats(vars.lst, vars.lst->sb, vars.lst->path);
-            ft_putchar(' ');
-            ft_putstr(path);
+            if(flags.list == 1)
+            {
+                vars.lst = ls_lstnew(path, NULL);
+                vars.lst->path = ft_strdup(path);./a.
+                ft_structstat(vars.lst);
+                ft_filestats(vars.lst, vars.lst->sb, vars.lst->path);
+                ft_putchar(' ');
+            }
+            ft_putstr(vars.lst->path);
             ft_putchar('\n');
         }
         return (vars.lst);
@@ -57,7 +58,7 @@ n_list *ft_readdir(char *path, f_list flags)
                 ls_lstadd(vars.dirs, ls_lstnew(vars.de->d_name, path));
         }
     }
-   // printf("HERE is PaTh %s\n", vars.lst->path);
+
     ft_mergesort(&vars.dirs, flags);
     ft_mergesort(&vars.lst, flags);
     ft_printlst(vars.lst, flags);
@@ -79,7 +80,7 @@ n_list *ft_readdir(char *path, f_list flags)
             ft_dellst(vars.lst);
         }
         vars.dirs = vars.dirs->next;
-    }
+        }
     }
 	return(vars.tmp);
 }

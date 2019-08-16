@@ -25,6 +25,7 @@ int main(int argc, char **argv)
     i = 0;
     ft_flagset(&flags);
     
+
     if (argc > 1)
         i = ft_readflag(argc, argv, &flags);
 
@@ -34,13 +35,14 @@ int main(int argc, char **argv)
         ft_putstr("ft_ls: illegal option -- ");
         ft_putchar (error);
         ft_putstr("\nusage: ft_ls [-Ralrt] [file ...]");
+        // sleep(30);
         return (0);
     }
-    if (argc == 1 || argc == i ||(argc - i == 1 && ft_strcmp(argv[i], "--") == 0))
+    if (argc == 1 || argc == i || (argc - i == 1 && ft_strcmp(argv[i], "--") == 0))
     {
         dirs = ft_readdir(".", flags);
         ft_dellst(dirs);
-	//	sleep (10);
+		// sleep (30);
         return (0);  
     }
 
@@ -73,7 +75,7 @@ int main(int argc, char **argv)
             ft_dellst(dirs);
         }
     }
-  // sleep(10); 
+//   sleep(30); 
    return (0);
 }
 //}
