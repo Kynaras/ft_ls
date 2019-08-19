@@ -25,6 +25,11 @@ typedef struct name_list
 	struct name_list *next;
 } n_list;
 
+struct Node { 
+    int data; 
+    struct Node* next; 
+} no_list;
+
 typedef	struct flag_list
 {
 	unsigned int 	recursive : 1;
@@ -43,6 +48,16 @@ typedef struct var_list
     n_list			*tmp;
     char			*str;
 } v_list;
+
+typedef struct vars_list
+{
+	char error;
+    n_list *lst;
+    f_list flags;
+    n_list *dirs;
+    int i;
+    int j;
+} vs_list;
 
 void	ft_regcomp(n_list *a, n_list *b, n_list **result, f_list flags);
 int		ft_readflag(int argc, char **argv, f_list *flags);

@@ -14,65 +14,60 @@
 
 int main(int argc, char **argv) 
 {
-    char error;
-    n_list *lst;
-    f_list flags;
-    n_list *dirs;
-    int i;
-    int j;
+    vs_list vars;
+    vars.lst = NULL;
+    vars.i = 0;
 
-    lst = NULL;
-    i = 0;
-    ft_flagset(&flags);
+    ft_flagset(&vars.flags);
     
 
     if (argc > 1)
-        i = ft_readflag(argc, argv, &flags);
+        vars.i = ft_readflag(argc, argv, &vars.flags);
 
-    if (i == -1)
+    if (vars.i == -1)
     {
-        error = ft_finderror(argc, argv);
+        vars.error = ft_finderror(argc, argv);
         ft_putstr("ft_ls: illegal option -- ");
-        ft_putchar (error);
+        ft_putchar (vars.error);
         ft_putstr("\nusage: ft_ls [-Ralrt] [file ...]");
         // sleep(30);
         return (0);
     }
-    if (argc == 1 || argc == i || (argc - i == 1 && ft_strcmp(argv[i], "--") == 0))
+    if (argc == 1 || argc == vars.i || (argc - vars.i == 1 && ft_strcmp(argv[vars.i], "--") == 0))
     {
-        dirs = ft_readdir(".", flags);
-        ft_dellst(dirs);
+        vars.dirs = ft_readdir(".", vars.flags);
+        ft_dellst(vars.dirs);
 		// sleep (30);
         return (0);  
     }
 
     else if (argc >= 2)
     {
-        j = 0;
-        while (++j <= 2)
+        vars.j = 0;
+        while (++vars.j <= 2)
         {
-            lst = j == 1 ? ft_arglst(argc, argv, i, 1) : ft_arglst(argc, argv, i, 2);
-            ft_mergesort(&lst, flags);
-            ft_structstat(lst);
-            dirs = lst;
-            if (lst != NULL)
+            vars.lst = vars.j == 1 ? ft_arglst(argc, argv, vars.i, 1) : ft_arglst(argc, argv, vars.i, 2);
+            ft_mergesort(&vars.lst, vars.flags);
+            ft_structstat(vars.lst);
+            vars.dirs = vars.lst;
+            if (vars.lst != NULL)
             {
-                while (lst)
+                while (vars.lst)
                 {
-                    if (j >= 2 && S_ISDIR(lst->sb.st_mode))
+                    if (vars.j >= 2 && S_ISDIR(vars.lst->sb.st_mode))
                     {
-                        ft_putstr(lst->name);
+                        ft_putstr(vars.lst->name);
                         ft_putstr(":\n");
                     }
-                    ft_readdir(lst->name, flags);
-                    lst = lst->next;
-                    if (j >=2)
-                        j++;
+                    ft_readdir(vars.lst->name, vars.flags);
+                    vars.lst = vars.lst->next;
+                    if (vars.j >=2)
+                        vars.j++;
                 }
             }
             // else
-            //     dirs = ft_readdir(".", flags);
-            ft_dellst(dirs);
+            //     vars.dirs = ft_readdir(".", vars.flags);
+            ft_dellst(vars.dirs);
         }
     }
 //   sleep(30); 

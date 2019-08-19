@@ -17,12 +17,11 @@ n_list *ft_arglst(int argc, char **argv, int i, int type)
 	int index;
 	n_list *args;
 	DIR *dr;
-	args = NULL;
 	index = i;
+	args = NULL;
 
 	  if (ft_strcmp(argv[index], "--") == 0)
 	 	index++;
-
 	while (index < argc)
 	{
 		if(!(dr=opendir(argv[index])) && type == 1)
@@ -41,7 +40,7 @@ n_list *ft_arglst(int argc, char **argv, int i, int type)
 			closedir(dr);
 		}
 		index++;
-
 	}
+
 	return (args);
 }

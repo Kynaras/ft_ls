@@ -34,7 +34,7 @@ n_list *ft_readdir(char *path, f_list flags)
             if(flags.list == 1)
             {
                 vars.lst = ls_lstnew(path, NULL);
-                vars.lst->path = ft_strdup(path);./a.
+                vars.lst->path = ft_strdup(path);
                 ft_structstat(vars.lst);
                 ft_filestats(vars.lst, vars.lst->sb, vars.lst->path);
                 ft_putchar(' ');

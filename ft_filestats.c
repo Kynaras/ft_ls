@@ -89,34 +89,34 @@ void ft_filestats(n_list *lst, struct stat sb, char *path)
 	
 	ft_attr(path) > 0 ? ft_putchar('@') : ft_putchar(' ');
 	
-	totsize = ft_findsize(lst, 1);
+	// totsize = ft_findsize(lst, 1);
 
-	numsize = ft_numsize(sb.st_nlink);
+	// numsize = ft_numsize(sb.st_nlink);
 
-	i = totsize - numsize;
-	while (i)
-	{
-		ft_putchar(' ');
-		i--;
-	}
+	// i = totsize - numsize;
+	// while (i)
+	// {
+	// 	ft_putchar(' ');
+	// 	i--;
+	// }
 	ft_putnbr((int)sb.st_nlink);
 	ft_putchar(' ');
 
-	totsize = ft_findtotsize(lst, 1);
+	// totsize = ft_findtotsize(lst, 1);
 
-	if (!getpwuid(sb.st_uid))
-		numsize = ft_numcount(sb.st_uid);
-	else
-	{
-		numsize = ft_findlen(getpwuid(sb.st_uid)->pw_name);
-	}
+	// if (!getpwuid(sb.st_uid))
+	// 	numsize = ft_numcount(sb.st_uid);
+	// else
+	// {
+	// 	numsize = ft_findlen(getpwuid(sb.st_uid)->pw_name);
+	// }
 	
-	i = totsize - numsize; 
-	while (i > 0)
-	{
-		ft_putchar(' ');
-		i--;
-	}
+	// i = totsize - numsize; 
+	// while (i > 0)
+	// {
+	// 	ft_putchar(' ');
+	// 	i--;
+	// }
 	if (!getpwuid(sb.st_uid))
 	{
 		ft_putnbr(sb.st_uid);
@@ -127,24 +127,24 @@ void ft_filestats(n_list *lst, struct stat sb, char *path)
 	 }
 	ft_putchar(' ');
 	ft_putchar(' ');
-	totsize = ft_findtotsize(lst, 2);
+	// totsize = ft_findtotsize(lst, 2);
 
-	if (!getgrgid(sb.st_gid))
-	{
-		numsize = ft_numcount(sb.st_gid);
-	}
-	else
-	{
-		numsize = ft_findlen(getgrgid(sb.st_gid)->gr_name);
-	}
+	// if (!getgrgid(sb.st_gid))
+	// {
+	// 	numsize = ft_numcount(sb.st_gid);
+	// }
+	// else
+	// {
+	// 	numsize = ft_findlen(getgrgid(sb.st_gid)->gr_name);
+	// }
 	
 
-	i = totsize - numsize;
-	while (i)
-	{
-		ft_putchar(' ');
-		i--;
-	}
+	// i = totsize - numsize;
+	// while (i)
+	// {
+	// 	ft_putchar(' ');
+	// 	i--;
+	// }
 	if (!getgrgid(sb.st_gid))
 	{
 		ft_putnbr(sb.st_gid);
@@ -155,15 +155,7 @@ void ft_filestats(n_list *lst, struct stat sb, char *path)
 	 }
 	ft_putchar(' ');
 	ft_putchar(' ');
-	totsize = ft_findsize(lst, 2);
-	numsize = ft_numsize(sb.st_size);
-
-	i = totsize - numsize;
-	while (i)
-	{
-		ft_putchar(' ');
-		i--;
-	}
+	// ./a.o
 	ft_putlonglong(sb.st_size);
 	ft_timesplit(ctime(&sb.st_mtime));
 	}
