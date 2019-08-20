@@ -17,12 +17,20 @@
 # include <unistd.h>
 #include <sys/xattr.h>
 
+typedef struct size_list
+{
+	long long unamesize;
+	long long gnamesize;
+	long long linksize;
+	long long size;
+} s_list;
 typedef struct name_list
 {
 	char *name;
 	char *path;
 	struct stat sb;
 	struct name_list *next;
+	struct name_list *last;
 } n_list;
 
 struct Node { 
@@ -76,7 +84,7 @@ int		ft_flagcount(f_list *flags);
 void 	ft_dellst(n_list *lst);
 char	ft_finderror(int argc, char **argv);
 n_list	*ft_arglst(int argc, char **argv, int i, int type);
-void	ft_filestats(n_list *lst, struct stat sb, char *path);
+void	ft_filestats(struct stat sb, char *path, s_list totals);
 void	ft_timesplit(char *str);
 n_list	*sortlist(n_list *a, n_list *b, f_list flags);
 void	ft_timecmp(n_list *a, n_list *b, n_list **result, f_list flags);
@@ -87,5 +95,6 @@ size_t	ft_findtotsize(n_list *lst, int type);
 size_t 	ft_findlen(char *str);
 void 	ft_linkname(char *path);
 int		ft_attr(char *path);
+s_list	ft_totalsizelst(n_list *lst);
 
 #endif

@@ -15,6 +15,7 @@
 n_list *ft_readdir(char *path, f_list flags)
 {
 	v_list vars;
+    s_list totals;
 	
     vars.tmp = NULL;
     vars.dirs = NULL;
@@ -36,7 +37,8 @@ n_list *ft_readdir(char *path, f_list flags)
                 vars.lst = ls_lstnew(path, NULL);
                 vars.lst->path = ft_strdup(path);
                 ft_structstat(vars.lst);
-                ft_filestats(vars.lst, vars.lst->sb, vars.lst->path);
+                totals = ft_totalsizelst(vars.lst);
+                ft_filestats(vars.lst->sb, vars.lst->path, totals);
                 ft_putchar(' ');
             }
             ft_putstr(vars.lst->path);

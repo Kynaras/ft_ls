@@ -1,33 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ls_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_totalsizelst.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: keverett <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/22 14:07:02 by keverett          #+#    #+#             */
-/*   Updated: 2019/07/22 14:07:07 by keverett         ###   ########.fr       */
+/*   Created: 2019/08/20 11:05:09 by keverett          #+#    #+#             */
+/*   Updated: 2019/08/20 11:05:10 by keverett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
-#include <stddef.h>
-#include <stdlib.h>
 
-n_list *ls_lstnew(char *str, char *path)
+s_list ft_totalsizelst(n_list *lst)
 {
-	n_list *new;
+	s_list totals;
 
-	new = malloc(sizeof(n_list));
-	if (new == NULL)
-		return (NULL);
-	new->name = ft_strdup(str);
-	new->path = ft_strdup(path);
-	new->last = new;
-	ft_join(&new->path, "/");
-
-	ft_join(&new->path, str);
-
-	new->next = NULL;
-	return (new);
+	totals.unamesize = ft_findtotsize(lst, 1);
+	totals.gnamesize = ft_findtotsize(lst, 2);
+	totals.linksize = ft_findsize(lst, 1);
+	totals.size = ft_findsize(lst, 2);
+	return (totals);
 }
+

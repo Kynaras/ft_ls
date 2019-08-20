@@ -25,13 +25,8 @@ void	ft_linkname(char *path)
 		buf = ft_memalloc(len);
 		size = readlink(path, buf, len);
 		free(buf);
-		if (size == len)
-		{
-			len += size;
-			size += size;
-		}
-		else if (size < len)
-			break;
+		len += size;
+		size += size;
 	}
 	len = size + 1;
 	buf = ft_memalloc(len);

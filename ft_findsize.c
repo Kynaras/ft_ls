@@ -14,29 +14,19 @@
 
 size_t ft_findsize(n_list *lst, int type)
 {
-	size_t size;
 	long long num;
 	size_t i;
 	
 	num = 0;
 	i = 0;
-	size = 1;
-
 	while (lst)
 	{
-		if (type == 1)
-		{
-			if(lst->sb.st_nlink > num)
-				num = lst->sb.st_nlink;
-		}
-		else if (type == 2)
-		{
-			if (lst->sb.st_size > num)
-				num = lst->sb.st_size;
-		}
+		if (type == 1 && lst->sb.st_nlink > num)
+			num = lst->sb.st_nlink;
+		else if (type == 2 && lst->sb.st_size > num)
+			num = lst->sb.st_size;
 		lst = lst->next;
 	}
-
 	while (num)
 	{
 		num /= 10;

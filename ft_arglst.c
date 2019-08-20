@@ -12,11 +12,31 @@
 
 #include "ft_ls.h"
 
+void ft_lstmaker(n_list **args, char *argv, int type)
+{
+	DIR *dr;
+
+	if(!(dr=opendir(argv)) && type == 1)
+		{
+			if (*args == NULL)
+				*args = ls_lstnew(argv, ".");
+			else
+				ls_lstadd(*args, ls_lstnew(argv, "."));
+		}
+		else if ((dr = opendir(argv)) && type == 2)
+		{
+			if (*args == NULL)
+				*args = ls_lstnew(argv, ".");
+			else
+				ls_lstadd(*args, ls_lstnew(argv, "."));
+			closedir(dr);
+		}
+}
+
 n_list *ft_arglst(int argc, char **argv, int i, int type)
 {
 	int index;
 	n_list *args;
-	DIR *dr;
 	index = i;
 	args = NULL;
 
@@ -24,21 +44,7 @@ n_list *ft_arglst(int argc, char **argv, int i, int type)
 	 	index++;
 	while (index < argc)
 	{
-		if(!(dr=opendir(argv[index])) && type == 1)
-		{
-			if (args == NULL)
-				args = ls_lstnew(argv[index], ".");
-			else
-				ls_lstadd(args, ls_lstnew(argv[index], "."));
-		}
-		else if ((dr = opendir(argv[index])) && type == 2)
-		{
-			if (args == NULL)
-				args = ls_lstnew(argv[index], ".");
-			else
-				ls_lstadd(args, ls_lstnew(argv[index], "."));
-			closedir(dr);
-		}
+		ft_lstmaker(&args, argv[index], type);
 		index++;
 	}
 

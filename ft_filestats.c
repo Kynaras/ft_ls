@@ -74,7 +74,7 @@ void ft_perms(struct stat sb, int i)
 	
 	return ;
 }
-void ft_filestats(n_list *lst, struct stat sb, char *path)
+void ft_filestats(struct stat sb, char *path, s_list totals)
 {
 	int i;
 	int totsize;
@@ -86,76 +86,64 @@ void ft_filestats(n_list *lst, struct stat sb, char *path)
 		ft_perms(sb, i);
 		i++;
 	}
-	
+
 	ft_attr(path) > 0 ? ft_putchar('@') : ft_putchar(' ');
-	
-	// totsize = ft_findsize(lst, 1);
 
-	// numsize = ft_numsize(sb.st_nlink);
-
-	// i = totsize - numsize;
-	// while (i)
-	// {
-	// 	ft_putchar(' ');
-	// 	i--;
-	// }
+	i = totals.linksize - ft_numsize(sb.st_nlink);
+	while (i)
+	{
+		ft_putchar(' ');
+		i--;
+	}
 	ft_putnbr((int)sb.st_nlink);
 	ft_putchar(' ');
 
-	// totsize = ft_findtotsize(lst, 1);
-
-	// if (!getpwuid(sb.st_uid))
-	// 	numsize = ft_numcount(sb.st_uid);
-	// else
-	// {
-	// 	numsize = ft_findlen(getpwuid(sb.st_uid)->pw_name);
-	// }
-	
-	// i = totsize - numsize; 
-	// while (i > 0)
-	// {
-	// 	ft_putchar(' ');
-	// 	i--;
-	// }
 	if (!getpwuid(sb.st_uid))
-	{
-		ft_putnbr(sb.st_uid);
-	}
+		numsize = ft_numcount(sb.st_uid);
 	else
-	 {
-		 ft_putstr(getpwuid(sb.st_uid)->pw_name);
-	 }
-	ft_putchar(' ');
-	ft_putchar(' ');
-	// totsize = ft_findtotsize(lst, 2);
+		numsize = ft_findlen(getpwuid(sb.st_uid)->pw_name);
 
-	// if (!getgrgid(sb.st_gid))
-	// {
-	// 	numsize = ft_numcount(sb.st_gid);
-	// }
-	// else
-	// {
-	// 	numsize = ft_findlen(getgrgid(sb.st_gid)->gr_name);
-	// }
 	
-
-	// i = totsize - numsize;
-	// while (i)
-	// {
-	// 	ft_putchar(' ');
-	// 	i--;
-	// }
-	if (!getgrgid(sb.st_gid))
+	i = totals.unamesize - numsize; 
+	while (i > 0)
 	{
-		ft_putnbr(sb.st_gid);
+		ft_putchar(' ');
+		i--;
 	}
+	if (!getpwuid(sb.st_uid))
+		ft_putnbr(sb.st_uid);
 	else
-	 {
+		 ft_putstr(getpwuid(sb.st_uid)->pw_name);
+	ft_putchar(' ');
+	ft_putchar(' ');
+	
+	if (!getgrgid(sb.st_gid))
+		numsize = ft_numcount(sb.st_gid);
+	else
+		numsize = ft_findlen(getgrgid(sb.st_gid)->gr_name);
+	
+	i =  totals.gnamesize - numsize;
+	while (i)
+	{
+		ft_putchar(' ');
+		i--;
+	}
+	if (!getgrgid(sb.st_gid))
+		ft_putnbr(sb.st_gid);
+	else
 		 ft_putstr((getgrgid(sb.st_gid)->gr_name));
-	 }
 	ft_putchar(' ');
 	ft_putchar(' ');
-	// ./a.o
+
+	numsize = ft_numcount(sb.st_size);
+
+    i = totals.size - numsize;
+
+	while (i)
+	{
+		ft_putchar(' ');
+		i--;
+	}
 	ft_putlonglong(sb.st_size);
 	ft_timesplit(ctime(&sb.st_mtime));
 	}

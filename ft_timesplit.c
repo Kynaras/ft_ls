@@ -12,22 +12,10 @@
 
 #include "ft_ls.h"
 
-void ft_timesplit(char *str)
+void 	ft_innersplit(char **time, int i)
 {
-	int i;
-
-	i = 1;
-	char **time;
 	char **seconds;
-	char *tmp;
-
-	time = ft_strsplit(str, ' ');
-	tmp = time[1];
-	time[1] = time[2];
-	time[2] = tmp;
-	while (time[i] && i <= 3)
-	{
-		ft_putchar(' ');
+	ft_putchar(' ');
 		if (i == 1 && ft_findlen(time[i]) < 2)
 				ft_putchar(' ');
 		if(i == 3)
@@ -36,23 +24,34 @@ void ft_timesplit(char *str)
 			ft_putstr(seconds[0]);
 			ft_putchar(':');
 			ft_putstr(seconds[1]);
+			i = 0;
+			while (seconds[i++])
+				free(seconds[i]);
+	free(seconds);
 		}
 		else
 			ft_putstr(time[i]);
+}
+void	ft_timesplit(char *str)
+{
+	int i;
+
+	i = 1;
+	char **time;
+	char *tmp;
+
+	time = ft_strsplit(str, ' ');
+	tmp = time[1];
+	time[1] = time[2];
+	time[2] = tmp;
+	while (time[i] && i <= 3)
+	{
+		ft_innersplit(time, i);
 		i++;
 	} 
 	i = 0;
-	while (time[i])
-	{
+	while (time[i++])
 		free(time[i]);
-		i++;
-	}
 	free (time);
 	i = 0;
-	while (seconds[i])
-	{
-		free(seconds[i]);
-		i++;
-	}
-	free(seconds);
 }
