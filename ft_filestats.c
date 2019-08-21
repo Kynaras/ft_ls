@@ -57,6 +57,7 @@ void ft_others(struct stat sb, int i)
 
 	}
 }
+
 void ft_perms(struct stat sb, int i)
 {
 	if (i == 0 && S_ISDIR(sb.st_mode))
