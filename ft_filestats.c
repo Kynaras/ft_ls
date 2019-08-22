@@ -103,8 +103,6 @@ void ft_filestats(struct stat sb, char *path, s_list totals)
 		numsize = ft_numcount(sb.st_uid);
 	else
 		numsize = ft_findlen(getpwuid(sb.st_uid)->pw_name);
-
-	
 	i = totals.unamesize - numsize; 
 	while (i > 0)
 	{
