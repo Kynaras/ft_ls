@@ -85,7 +85,7 @@ void 	ft_dellst(n_list *lst);
 char	ft_finderror(int argc, char **argv);
 n_list	*ft_arglst(int argc, char **argv, int i, int type);
 void	ft_filestats(struct stat sb, char *path, s_list totals);
-void	ft_timesplit(char *str);
+void	ft_timesplit(char *str, struct stat *sb);
 n_list	*sortlist(n_list *a, n_list *b, f_list flags);
 void	ft_timecmp(n_list *a, n_list *b, n_list **result, f_list flags);
 size_t	ft_findsize(n_list *lst, int type);

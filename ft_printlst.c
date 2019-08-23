@@ -46,7 +46,6 @@ void    ft_hiddenfiles(n_list *lst, f_list flags, s_list totals)
              }
              ft_putchar('\n');
 }
-
 void    ft_totalsize(n_list *lst)
 {
     long long size;

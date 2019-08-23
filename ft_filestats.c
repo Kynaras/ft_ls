@@ -60,12 +60,22 @@ void ft_others(struct stat sb, int i)
 
 void ft_perms(struct stat sb, int i)
 {
-	if (i == 0 && S_ISDIR(sb.st_mode))
-		ft_putchar('d');
-	else if (i == 0 && S_ISLNK(sb.st_mode))
+	if (i == 0)
+	{
+	if (S_ISDIR(sb.st_mode))
+			ft_putchar('d');
+	else if (S_ISLNK(sb.st_mode))
 		ft_putchar('l');
-	else if (i == 0)
+	else if (S_ISFIFO(sb.st_mode))
+		ft_putchar('p');
+	else if (S_ISSOCK(sb.st_mode))
+		ft_putchar('s');
+	else if (S_ISCHR(sb.st_mode))
+		ft_putchar('c');
+	else
 		ft_putchar('-');
+	}
+
 	else if (i >= 1 && i <= 3)
 		ft_user(sb, i);
 	else if (i >= 4 && i <= 6)
@@ -112,9 +122,8 @@ void ft_filestats(struct stat sb, char *path, s_list totals)
 	if (!getpwuid(sb.st_uid))
 		ft_putnbr(sb.st_uid);
 	else
-		 ft_putstr(getpwuid(sb.st_uid)->pw_name);
-	ft_putchar(' ');
-	ft_putchar(' ');
+	    ft_putstr(getpwuid(sb.st_uid)->pw_name);
+	ft_putstr("  ");
 	
 	if (!getgrgid(sb.st_gid))
 		numsize = ft_numcount(sb.st_gid);
@@ -130,7 +139,7 @@ void ft_filestats(struct stat sb, char *path, s_list totals)
 	if (!getgrgid(sb.st_gid))
 		ft_putnbr(sb.st_gid);
 	else
-		 ft_putstr((getgrgid(sb.st_gid)->gr_name));
+		ft_putstr((getgrgid(sb.st_gid)->gr_name));
 	ft_putchar(' ');
 	ft_putchar(' ');
 
@@ -144,5 +153,5 @@ void ft_filestats(struct stat sb, char *path, s_list totals)
 		i--;
 	}
 	ft_putlonglong(sb.st_size);
-	ft_timesplit(ctime(&sb.st_mtime));
+	ft_timesplit(ctime(&sb.st_mtime), &sb);
 	}
