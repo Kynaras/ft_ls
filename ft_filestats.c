@@ -123,7 +123,7 @@ void ft_filestats(struct stat sb, char *path, s_list totals)
 		ft_putnbr(sb.st_uid);
 	else
 	    ft_putstr(getpwuid(sb.st_uid)->pw_name);
-	ft_putstr("  ");
+	write(1, "  ", 2);
 	
 	if (!getgrgid(sb.st_gid))
 		numsize = ft_numcount(sb.st_gid);
@@ -140,8 +140,7 @@ void ft_filestats(struct stat sb, char *path, s_list totals)
 		ft_putnbr(sb.st_gid);
 	else
 		ft_putstr((getgrgid(sb.st_gid)->gr_name));
-	ft_putchar(' ');
-	ft_putchar(' ');
+	write(1, "  ", 2);
 
 	numsize = ft_numcount(sb.st_size);
 

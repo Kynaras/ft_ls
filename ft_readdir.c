@@ -67,7 +67,7 @@ if (errno == EACCES || errno == ENOENT)
                 ft_filestats(vars->lst->sb, vars->lst->path, *totals);
                 ft_putchar(' ');
             }
-            ft_putstr(vars->lst->path);
+            ft_putstr(path);
             ft_putchar('\n');
         }
         else

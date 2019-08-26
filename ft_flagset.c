@@ -19,5 +19,6 @@ void ft_flagset(f_list *flags)
 	flags->time = 0;
 	flags->hidden = 0;
 	flags->list = 0;
+	flags->semihidden = 0;
 	return;
 }

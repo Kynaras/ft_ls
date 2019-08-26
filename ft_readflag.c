@@ -31,7 +31,11 @@ int 	ft_flagger(char *str, int i, f_list *flags)
 				flags->recursive = 1;
 			else if (str[j] == 'a')
 				flags->hidden = 1;
-			else
+			else if (str[j] == 'A')
+				flags->semihidden = 1;
+			else if (str[j] == 'G')
+				flags->colours = 1;
+			else 
 				return(-1);
 		}
 		return (-2);

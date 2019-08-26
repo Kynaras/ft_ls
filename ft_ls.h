@@ -45,6 +45,8 @@ typedef	struct flag_list
 	unsigned int 	time : 1;
 	unsigned int 	hidden : 1;
 	unsigned int	list : 1;
+	unsigned int	semihidden : 1;
+	unsigned int	colours : 1;
 } f_list;
 
 typedef struct var_list
