@@ -24,6 +24,7 @@ n_list *ls_lstnew(char *str, char *path)
 	new->name = ft_strdup(str);
 	new->path = ft_strdup(path);
 	new->last = new;
+	new->error = 0;
 	ft_join(&new->path, "/");
 
 	ft_join(&new->path, str);

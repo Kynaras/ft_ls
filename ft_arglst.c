@@ -16,21 +16,26 @@ void ft_lstmaker(n_list **args, char *argv, int type)
 {
 	DIR *dr;
 
-	if(!(dr=opendir(argv)) && type == 1)
+	dr = NULL;
+	if(!(dr = opendir(argv)))
+		{
+			if (type == 1)
+			{
+			 if (*args == NULL)
+			 	 *args = ls_lstnew(argv, ".");
+			 else
+				 ls_lstadd(*args, ls_lstnew(argv, "."));
+			}
+		}
+	else if (type == 2)
 		{
 			if (*args == NULL)
 				*args = ls_lstnew(argv, ".");
 			else
 				ls_lstadd(*args, ls_lstnew(argv, "."));
 		}
-		else if ((dr = opendir(argv)) && type == 2)
-		{
-			if (*args == NULL)
-				*args = ls_lstnew(argv, ".");
-			else
-				ls_lstadd(*args, ls_lstnew(argv, "."));
-			closedir(dr);
-		}
+	 else
+    	closedir(dr);
 }
 
 n_list *ft_arglst(int argc, char **argv, int i, int type)
@@ -47,6 +52,5 @@ n_list *ft_arglst(int argc, char **argv, int i, int type)
 		ft_lstmaker(&args, argv[index], type);
 		index++;
 	}
-
 	return (args);
 }

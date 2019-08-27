@@ -16,13 +16,28 @@ void    ft_colours(n_list *lst, f_list flags)
 {
     if (S_ISDIR(lst->sb.st_mode))
     {    
-       if (S_IWOTH & lst->sb.st_mode && !(S_ISVTX & lst->sb.st_mode))
-            ft_putstr("\033[30;43m");
+       if (S_IWOTH & lst->sb.st_mode)
+        S_ISVTX & lst->sb.st_mode ? ft_putstr("\033[30;48;2;20;190;130m") : 
+        ft_putstr("\033[30;43m");
        else
             ft_putstr("\033[34m"); 
     }
+    else if (S_ISREG(lst->sb.st_mode))
+    {
+
+        if (S_IXOTH & lst->sb.st_mode || S_IXGRP & lst->sb.st_mode || 
+        S_IXUSR & lst->sb.st_mode)
+        {
+            if (S_ISVTX & lst->sb.st_mode)
+                ft_putstr("\033[30;48;2;194;54;33m");
+            else
+                ft_putstr("\033[31m");
+        }
+
+    }
+
     else if (S_ISLNK(lst->sb.st_mode))
-       ft_putstr("\033[35m"); 
+       ft_putstr("\033[35m");
     ft_putstr(lst->name);
     ft_putstr("\033[0m");
 }
@@ -109,6 +124,8 @@ void ft_printlst(n_list *lst, f_list flags)
     if (flags.list == 1 && lst != NULL)
     {
         ft_structstat(lst);
+        if(lst->error == 1)
+            return;
         totals = ft_totalsizelst(lst);
         ft_totalsize(lst);
     }

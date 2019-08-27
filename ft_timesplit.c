@@ -32,9 +32,9 @@ void 	ft_innersplit(char **timer, int i, struct stat *sb)
 			ft_putchar(':');
 			ft_putstr(seconds[1]);
 			i = 0;
-			while (seconds[i++])
-				free(seconds[i]);
-				free(seconds);
+			while (seconds[i])
+				free(seconds[i++]);
+			free(seconds);
 			}
 		}
 		else
@@ -43,7 +43,6 @@ void 	ft_innersplit(char **timer, int i, struct stat *sb)
 void	ft_timesplit(char *str, struct stat *sb)
 {
 	int i;
-
 	i = 1;
 	char **time;
 	char *tmp;
@@ -58,8 +57,11 @@ void	ft_timesplit(char *str, struct stat *sb)
 		i++;
 	} 
 	i = 0;
-	while (time[i++])
+	while (time[i])
+	{
 		free(time[i]);
+		i++;
+	}
 	free (time);
 	i = 0;
 }

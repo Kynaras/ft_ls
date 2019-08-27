@@ -14,9 +14,12 @@
 
 void	ft_structstat(n_list *lst)
 {
+	n_list *tmp;
+	tmp = lst;
 	while (lst)
 	{
-		lstat(lst->path, &lst->sb);
+		if((lstat(lst->path, &lst->sb)) == -1)
+			tmp->error = 1;
 		lst = lst->next;	
 	}
 }

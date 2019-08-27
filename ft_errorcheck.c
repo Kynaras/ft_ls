@@ -32,8 +32,9 @@ void 	ft_errorcheck(char *str, n_list **lst, n_list **dirs)
 	else
 	{
 		if (dirs == NULL)
-			*dirs = ls_lstnew(str,".");
+			*dirs = ls_lstnew(str, ".");
 		else
 			ls_lstadd(*dirs, ls_lstnew(str, "."));
+		closedir(dr);
 	}
 }

@@ -16,6 +16,7 @@ int main(int argc, char **argv)
 {
     vs_list vars;
     vars.lst = NULL;
+    vars.dirs = NULL;
     vars.i = 0;
 
     ft_flagset(&vars.flags);
@@ -30,14 +31,12 @@ int main(int argc, char **argv)
         ft_putstr("ft_ls: illegal option -- ");
         ft_putchar (vars.error);
         ft_putstr("\nusage: ft_ls [-Ralrt] [file ...]");
-        // sleep(30);
         return (0);
     }
     if (argc == 1 || argc == vars.i || (argc - vars.i == 1 && ft_strcmp(argv[vars.i], "--") == 0))
     {
         vars.dirs = ft_readdir(".", vars.flags);
         ft_dellst(vars.dirs);
-		// sleep (30);
         return (0);  
     }
 
@@ -50,8 +49,9 @@ int main(int argc, char **argv)
             ft_mergesort(&vars.lst, vars.flags);
             ft_structstat(vars.lst);
             vars.dirs = vars.lst;
+         
             if (vars.lst != NULL)
-            {
+            { 
                 while (vars.lst)
                 {
                     if (vars.j >= 2 && S_ISDIR(vars.lst->sb.st_mode))
@@ -65,12 +65,8 @@ int main(int argc, char **argv)
                         vars.j++;
                 }
             }
-            // else
-            //     vars.dirs = ft_readdir(".", vars.flags);
             ft_dellst(vars.dirs);
         }
     }
-//   sleep(30); 
    return (0);
 }
-//}

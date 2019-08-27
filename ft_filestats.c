@@ -152,5 +152,5 @@ void ft_filestats(struct stat sb, char *path, s_list totals)
 		i--;
 	}
 	ft_putlonglong(sb.st_size);
-	ft_timesplit(ctime(&sb.st_mtime), &sb);
+	ft_timesplit(ctime(&sb.st_mtimespec.tv_sec), &sb);
 	}

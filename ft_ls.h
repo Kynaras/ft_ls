@@ -28,6 +28,7 @@ typedef struct name_list
 {
 	char *name;
 	char *path;
+	unsigned int error: 1;
 	struct stat sb;
 	struct name_list *next;
 	struct name_list *last;
