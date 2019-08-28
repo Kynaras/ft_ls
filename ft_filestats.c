@@ -72,6 +72,8 @@ void ft_perms(struct stat sb, int i)
 		ft_putchar('s');
 	else if (S_ISCHR(sb.st_mode))
 		ft_putchar('c');
+	else if (S_ISBLK(sb.st_mode))
+		ft_putchar('b');
 	else
 		ft_putchar('-');
 	}
@@ -85,7 +87,7 @@ void ft_perms(struct stat sb, int i)
 	
 	return ;
 }
-void ft_filestats(struct stat sb, char *path, s_list totals)
+void ft_filestats(struct stat sb, char *path, s_list totals, f_list *flags)
 {
 	int i;
 	int totsize;
@@ -109,6 +111,8 @@ void ft_filestats(struct stat sb, char *path, s_list totals)
 	ft_putnbr((int)sb.st_nlink);
 	ft_putchar(' ');
 
+	if (flags->groups == 0)
+	{
 	if (!getpwuid(sb.st_uid))
 		numsize = ft_numcount(sb.st_uid);
 	else
@@ -124,7 +128,10 @@ void ft_filestats(struct stat sb, char *path, s_list totals)
 	else
 	    ft_putstr(getpwuid(sb.st_uid)->pw_name);
 	write(1, "  ", 2);
+	}
 	
+	if (flags->users == 0)
+	{
 	if (!getgrgid(sb.st_gid))
 		numsize = ft_numcount(sb.st_gid);
 	else
@@ -141,6 +148,7 @@ void ft_filestats(struct stat sb, char *path, s_list totals)
 	else
 		ft_putstr((getgrgid(sb.st_gid)->gr_name));
 	write(1, "  ", 2);
+	}
 
 	numsize = ft_numcount(sb.st_size);
 

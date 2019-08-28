@@ -13,15 +13,14 @@
 #include "ft_ls.h"
 
 
-void ft_recurse(v_list vars, f_list flags)
+void ft_recurse(v_list vars, f_list *flags)
 {
     while (vars.dirs != NULL)
     {
-        if (*vars.dirs->name != '.' || (flags.hidden == 1 && *vars.dirs->name == '.'))
+        if (*vars.dirs->name != '.' || (flags->hidden == 1 && *vars.dirs->name == '.')|| (flags->unsorted == 1 & *vars.dirs->name == '.'))
         {
-            
             ft_putchar('\n');
-            ft_putstr(vars.dirs->name);
+            ft_putstr(vars.dirs->path);
             ft_putstr(":\n");
             vars.lst = ft_readdir(vars.dirs->path, flags);
             ft_dellst(vars.lst);
@@ -48,7 +47,7 @@ void    ft_readlsts(v_list *vars, char *path)
     }
 }
 
-void    ft_errcheck(v_list *vars, char *path, f_list flags, s_list *totals)
+void    ft_errcheck(v_list *vars, char *path, f_list *flags, s_list *totals)
 {
 if (errno == EACCES || errno == ENOENT)
             {
@@ -58,13 +57,13 @@ if (errno == EACCES || errno == ENOENT)
             }
         else if (errno == ENOTDIR)
         {
-            if(flags.list == 1)
+            if(flags->list == 1)
             {
                 vars->lst = ls_lstnew(path, NULL);
                 vars->lst->path = ft_strdup(path);
                 ft_structstat(vars->lst);
                 *totals = ft_totalsizelst(vars->lst);
-                ft_filestats(vars->lst->sb, vars->lst->path, *totals);
+                ft_filestats(vars->lst->sb, vars->lst->path, *totals, flags);
                 ft_putchar(' ');
             }
             ft_putstr(path);
@@ -86,7 +85,7 @@ void    ft_strucset(v_list *vars)
     vars->lst = NULL;
 }
 
-n_list  *ft_readdir(char *path, f_list flags)
+n_list  *ft_readdir(char *path, f_list *flags)
 {
 	v_list vars;
     s_list totals;
@@ -98,13 +97,16 @@ n_list  *ft_readdir(char *path, f_list flags)
         return (vars.lst);
     }
 	ft_readlsts(&vars, path);
-    ft_mergesort(&vars.dirs, flags);
-    ft_mergesort(&vars.lst, flags);
+    if (flags->unsorted == 0)
+    {
+        ft_mergesort(&vars.dirs, flags);
+        ft_mergesort(&vars.lst, flags);
+    }
     ft_printlst(vars.lst, flags);
     ft_dellst(vars.lst);
     closedir(vars.dr);
 
-    if (flags.recursive == 1)
+    if (flags->recursive == 1)
         ft_recurse(vars, flags);
 	return(vars.dirs);
 }

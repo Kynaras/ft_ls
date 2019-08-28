@@ -20,5 +20,9 @@ void ft_flagset(f_list *flags)
 	flags->hidden = 0;
 	flags->list = 0;
 	flags->semihidden = 0;
+	flags->colours = 0;
+	flags->groups = 0;
+	flags->unsorted = 0;
+	flags->users = 0;
 	return;
 }

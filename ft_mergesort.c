@@ -41,7 +41,7 @@ void	splitlist(n_list *original, n_list **first, n_list **second)
 	count2->next = NULL;
 }
 
-void	ft_mergesort(n_list **lst, f_list flags)
+void	ft_mergesort(n_list **lst, f_list *flags)
 {
 	n_list *head = *lst;
 	n_list *a = NULL;

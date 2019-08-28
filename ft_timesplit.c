@@ -20,7 +20,7 @@ void 	ft_innersplit(char **timer, int i, struct stat *sb)
 				ft_putchar(' ');
 		if(i == 3)
 		{
-			if ((time(NULL) - sb->st_mtime) >= 16070400 || time(NULL) < sb->st_mtime)
+			if ((time(NULL) - sb->st_mtime) >= 15770000 || time(NULL) < sb->st_mtime)
 			{
 				ft_putchar(' ');
 				write(1, timer[4], 4);

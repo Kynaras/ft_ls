@@ -35,6 +35,18 @@ int 	ft_flagger(char *str, int i, f_list *flags)
 				flags->semihidden = 1;
 			else if (str[j] == 'G')
 				flags->colours = 1;
+			else if (str[j] == 'g')
+			{
+				flags->list = 1;
+				flags->groups = 1;
+			}
+			else if (str[j] == 'f')
+				flags->unsorted = 1;
+			else if (str[j] == 'o')
+			{
+				flags->users = 1;
+				flags->list = 1;
+			}
 			else 
 				return(-1);
 		}

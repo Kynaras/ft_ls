@@ -30,12 +30,12 @@ int main(int argc, char **argv)
         vars.error = ft_finderror(argc, argv);
         ft_putstr("ft_ls: illegal option -- ");
         ft_putchar (vars.error);
-        ft_putstr("\nusage: ft_ls [-Ralrt] [file ...]");
+        ft_putstr("\nusage: ft_ls [-AGRafglgrt] [file ...]");
         return (0);
     }
     if (argc == 1 || argc == vars.i || (argc - vars.i == 1 && ft_strcmp(argv[vars.i], "--") == 0))
     {
-        vars.dirs = ft_readdir(".", vars.flags);
+        vars.dirs = ft_readdir(".", &vars.flags);
         ft_dellst(vars.dirs);
         return (0);  
     }
@@ -46,7 +46,8 @@ int main(int argc, char **argv)
         while (++vars.j <= 2)
         {
             vars.lst = vars.j == 1 ? ft_arglst(argc, argv, vars.i, 1) : ft_arglst(argc, argv, vars.i, 2);
-            ft_mergesort(&vars.lst, vars.flags);
+            if (vars.flags.unsorted == 0)
+             ft_mergesort(&vars.lst, &vars.flags);
             ft_structstat(vars.lst);
             vars.dirs = vars.lst;
          
@@ -59,7 +60,7 @@ int main(int argc, char **argv)
                         ft_putstr(vars.lst->name);
                         ft_putstr(":\n");
                     }
-                    ft_readdir(vars.lst->name, vars.flags);
+                    ft_readdir(vars.lst->name, &vars.flags);
                     vars.lst = vars.lst->next;
                     if (vars.j >=2)
                         vars.j++;
