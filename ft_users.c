@@ -1,39 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_errorcheck.c                                    :+:      :+:    :+:   */
+/*   ft_users.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: keverett <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/02 16:29:41 by keverett          #+#    #+#             */
-/*   Updated: 2019/08/02 16:29:45 by keverett         ###   ########.fr       */
+/*   Created: 2019/08/28 17:05:33 by keverett          #+#    #+#             */
+/*   Updated: 2019/08/28 17:05:35 by keverett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void	ft_errorcheck(char *str, n_list **lst, n_list **dirs)
+void	ft_users(f_list *flags, struct stat *sb, char *path, s_list *totals)
 {
-	DIR *dr;
+	int i;
+	int numsize;
 
-	if (!(dr = opendir(str)))
+	if (flags->users == 0)
 	{
-		if (errno == ENOTDIR)
-		{
-			if (lst == NULL)
-				*lst = ls_lstnew(str, ".");
-			else
-				ls_lstadd(*lst, ls_lstnew(str, "."));
-		}
-		else if (errno == ENOENT)
-			perror("Error ");
-	}
-	else
-	{
-		if (dirs == NULL)
-			*dirs = ls_lstnew(str, ".");
+		if (!getgrgid(sb->st_gid))
+			numsize = ft_numcount(sb->st_gid);
 		else
-			ls_lstadd(*dirs, ls_lstnew(str, "."));
-		closedir(dr);
+			numsize = ft_findlen(getgrgid(sb->st_gid)->gr_name);
+		i = totals->gnamesize - numsize;
+		while (i)
+		{
+			ft_putchar(' ');
+			i--;
+		}
+		if (!getgrgid(sb->st_gid))
+			ft_putnbr(sb->st_gid);
+		else
+			ft_putstr((getgrgid(sb->st_gid)->gr_name));
+		write(1, "  ", 2);
 	}
 }

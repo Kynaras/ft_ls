@@ -12,11 +12,11 @@
 
 #include "ft_ls.h"
 
-size_t ft_findsize(n_list *lst, int type)
+size_t	ft_findsize(n_list *lst, int type)
 {
-	long long num;
-	size_t i;
-	
+	long long	num;
+	size_t		i;
+
 	num = 0;
 	i = 0;
 	while (lst)
@@ -31,7 +31,7 @@ size_t ft_findsize(n_list *lst, int type)
 	{
 		num /= 10;
 		i++;
-	}	
+	}
 	i = i == 0 ? 1 : i;
-	return (i +1);
+	return (i + 1);
 }

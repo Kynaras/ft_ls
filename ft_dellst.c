@@ -12,7 +12,7 @@
 
 #include "ft_ls.h"
 
-void ft_dellst(n_list *lst)
+void	ft_dellst(n_list *lst)
 {
 	n_list *tmp;
 

@@ -6,7 +6,7 @@
 /*   By: keverett <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/23 10:55:41 by keverett          #+#    #+#             */
-/*   Updated: 2019/08/07 12:50:31 by keverett         ###   ########.fr       */
+/*   Updated: 2019/08/28 16:47:46 by keverett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ int				ft_tolower(int c);
 int				ft_toupper(int c);
 void			ft_join(char **line, char *buf);
 char			*ft_cut(char **str, char c);
-int				ft_numcount(long int n);
+size_t			ft_numcount(long int n);
 void			ft_lstaddre(t_list **alst, t_list *new);
 int				ft_iswhitespace(char c);
 char			*ft_strcdup(const char *s1, int c);

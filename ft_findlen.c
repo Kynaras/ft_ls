@@ -12,15 +12,14 @@
 
 #include "ft_ls.h"
 
-size_t ft_findlen(char *str)
+size_t	ft_findlen(char *str)
 {
 	int i;
 
 	i = 0;
-
 	while (str[i])
 	{
 		i++;
 	}
-	return(i);
+	return (i);
 }

@@ -12,41 +12,41 @@
 
 #include "ft_ls.h"
 
-void ft_lstmaker(n_list **args, char *argv, int type)
+void	ft_lstmaker(n_list **args, char *argv, int type)
 {
 	DIR *dr;
 
 	dr = NULL;
-	if(!(dr = opendir(argv)))
-		{
-			if (type == 1)
-			{
-			 if (*args == NULL)
-			 	 *args = ls_lstnew(argv, ".");
-			 else
-				 ls_lstadd(*args, ls_lstnew(argv, "."));
-			}
-		}
-	else if (type == 2)
+	if (!(dr = opendir(argv)))
+	{
+		if (type == 1)
 		{
 			if (*args == NULL)
 				*args = ls_lstnew(argv, ".");
 			else
 				ls_lstadd(*args, ls_lstnew(argv, "."));
 		}
-	 else
-    	closedir(dr);
+	}
+	else if (type == 2)
+	{
+		if (*args == NULL)
+			*args = ls_lstnew(argv, ".");
+		else
+			ls_lstadd(*args, ls_lstnew(argv, "."));
+	}
+	else
+		closedir(dr);
 }
 
-n_list *ft_arglst(int argc, char **argv, int i, int type)
+n_list	*ft_arglst(int argc, char **argv, int i, int type)
 {
-	int index;
-	n_list *args;
+	int		index;
+	n_list	*args;
+
 	index = i;
 	args = NULL;
-
-	  if (ft_strcmp(argv[index], "--") == 0)
-	 	index++;
+	if (ft_strcmp(argv[index], "--") == 0)
+		index++;
 	while (index < argc)
 	{
 		ft_lstmaker(&args, argv[index], type);

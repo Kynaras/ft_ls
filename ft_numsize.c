@@ -12,21 +12,19 @@
 
 #include "ft_ls.h"
 
-size_t ft_numsize(long long number)
+size_t	ft_numsize(long long number)
 {
 	size_t num;
 	size_t i;
 
 	i = 0;
-
 	if (number == 0)
 		return (1);
-
 	num = number;
 	while (num)
 	{
 		num /= 10;
 		i++;
-	}		
+	}
 	return (i);
 }

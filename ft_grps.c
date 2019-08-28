@@ -1,39 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_errorcheck.c                                    :+:      :+:    :+:   */
+/*   ft_grps.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: keverett <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/02 16:29:41 by keverett          #+#    #+#             */
-/*   Updated: 2019/08/02 16:29:45 by keverett         ###   ########.fr       */
+/*   Created: 2019/08/28 16:59:53 by keverett          #+#    #+#             */
+/*   Updated: 2019/08/28 17:00:19 by keverett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void	ft_errorcheck(char *str, n_list **lst, n_list **dirs)
+void	ft_grps(f_list *flags, struct stat *sb, char *path, s_list *totals)
 {
-	DIR *dr;
+	int numsize;
+	int i;
 
-	if (!(dr = opendir(str)))
+	if (flags->groups == 0)
 	{
-		if (errno == ENOTDIR)
-		{
-			if (lst == NULL)
-				*lst = ls_lstnew(str, ".");
-			else
-				ls_lstadd(*lst, ls_lstnew(str, "."));
-		}
-		else if (errno == ENOENT)
-			perror("Error ");
-	}
-	else
-	{
-		if (dirs == NULL)
-			*dirs = ls_lstnew(str, ".");
+		if (!getpwuid(sb->st_uid))
+			numsize = ft_numcount(sb->st_uid);
 		else
-			ls_lstadd(*dirs, ls_lstnew(str, "."));
-		closedir(dr);
+			numsize = ft_findlen(getpwuid(sb->st_uid)->pw_name);
+		i = totals->unamesize - numsize;
+		while (i > 0)
+		{
+			ft_putchar(' ');
+			i--;
+		}
+		if (!getpwuid(sb->st_uid))
+			ft_putnbr(sb->st_uid);
+		else
+			ft_putstr(getpwuid(sb->st_uid)->pw_name);
+		write(1, "  ", 2);
 	}
 }

@@ -11,8 +11,8 @@
 /* ************************************************************************** */
 
 #include <sys/stat.h>
-#include <stdio.h> 
-#include <dirent.h> 
+#include <stdio.h>
+#include <dirent.h>
 #include <pwd.h>
 #include <sys/errno.h>
 #include "ft_ls.h"
@@ -21,16 +21,15 @@
 
 void	splitlist(n_list *original, n_list **first, n_list **second)
 {
-	n_list *count = NULL;
-	n_list *count2 = NULL;
+	n_list *count;
+	n_list *count2;
 
 	count = original->next;
 	count2 = original;
-
 	while (count != NULL)
 	{
 		count = count->next;
-		if(count != NULL)
+		if (count != NULL)
 		{
 			count2 = count2->next;
 			count = count->next;
@@ -43,13 +42,15 @@ void	splitlist(n_list *original, n_list **first, n_list **second)
 
 void	ft_mergesort(n_list **lst, f_list *flags)
 {
-	n_list *head = *lst;
-	n_list *a = NULL;
-	n_list *b = NULL;
+	n_list *head;
+	n_list *a;
+	n_list *b;
 
-	if (*lst == NULL || (*lst)->next == NULL)	
+	a = NULL;
+	b = NULL;
+	head = *lst;
+	if (*lst == NULL || (*lst)->next == NULL)
 		return ;
-	
 	splitlist(head, &a, &b);
 	ft_mergesort(&a, flags);
 	ft_mergesort(&b, flags);

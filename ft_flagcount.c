@@ -17,8 +17,8 @@ int	ft_flagcount(f_list *flags)
 	int i;
 
 	i = 0;
-	if (flags->hidden == 1 || flags->list == 1 || flags->recursive == 1 || 
-	flags->reverse == 1 || flags->time == 1)
+	if (flags->hidden == 1 || flags->list == 1 || flags->recursive == 1 ||
+		flags->reverse == 1 || flags->time == 1)
 		i++;
 	return (i);
 }

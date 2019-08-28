@@ -15,8 +15,6 @@
 
 void	ls_lstadd(n_list *head, n_list *new)
 {
-    n_list *tmp;
-
     if (head == NULL || new == NULL)
         return;
     head->last->next = new;

@@ -14,9 +14,9 @@
 
 void	ft_linkname(char *path)
 {
-	char *buf;
-	size_t len;
-	size_t size;
+	char	*buf;
+	size_t	len;
+	size_t	size;
 
 	len = 1024;
 	size = 1024;

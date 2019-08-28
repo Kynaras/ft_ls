@@ -16,17 +16,17 @@ char	ft_finderror(int argc, char **argv)
 {
 	int i;
 	int j;
-	
+
 	i = 0;
 	j = 1;
 	while (++i < argc && argv[i][0] == '-')
 	{
 		while (argv[i][j])
 		{
-			if (argv[i][j] != 't' && argv[i][j] != 'l' && argv[i][j] != 'r' 
+			if (argv[i][j] != 't' && argv[i][j] != 'l' && argv[i][j] != 'r'
 			&& argv[i][j] != 'R' && argv[i][j] != 'a')
 			{
-			 	return (argv[i][j]);
+				return (argv[i][j]);
 			}
 			j++;
 		}

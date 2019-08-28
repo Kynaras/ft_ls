@@ -1,33 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_numcount.c                                      :+:      :+:    :+:   */
+/*   ft_size.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: keverett <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/28 11:11:51 by keverett          #+#    #+#             */
-/*   Updated: 2019/06/28 12:33:16 by keverett         ###   ########.fr       */
+/*   Created: 2019/08/28 17:11:45 by keverett          #+#    #+#             */
+/*   Updated: 2019/08/28 17:11:46 by keverett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_ls.h"
 
-size_t	ft_numcount(long int n)
+void	ft_size(struct stat *sb, s_list *totals)
 {
-	size_t		size;
+	int numsize;
+	int i;
 
-	size = 0;
-	if (n < 0)
+	numsize = ft_numcount(sb->st_size);
+	i = totals->size - numsize;
+	while (i)
 	{
-		size++;
-		n = n * -1;
+		ft_putchar(' ');
+		i--;
 	}
-	if (n == 0)
-		size++;
-	while (n != 0)
-	{
-		n = n / 10;
-		size++;
-	}
-	return (size);
 }
