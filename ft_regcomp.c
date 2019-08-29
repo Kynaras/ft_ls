@@ -14,16 +14,16 @@
 
 void	ft_regcomp(t_n_list *a, t_n_list *b, t_n_list **result, t_f_list *flags)
 {
-if (ft_strcmp((*a).name, (*b).name) <= 0)
+	if (ft_strcmp((*a).name, (*b).name) <= 0)
 	{
 		(*result) = flags->reverse ? b : a;
-		(*result)->next = flags->reverse ? sortlist(b->next, a, flags) : 
-		sortlist (a->next, b, flags);
+		(*result)->next = flags->reverse ? sortlist(b->next, a, flags) :
+		sortlist(a->next, b, flags);
 	}
 	else
 	{
 		*result = flags->reverse ? a : b;
-		(*result)->next = flags->reverse ? sortlist(b, a->next, flags) : 
+		(*result)->next = flags->reverse ? sortlist(b, a->next, flags) :
 		sortlist(a, b->next, flags);
 	}
 }

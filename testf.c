@@ -12,67 +12,57 @@
 
 #include "ft_ls.h"
 
-int main(int argc, char **argv) 
+void	ft_multiargs(t_vs_list *vars, int *argc, char ***argv)
 {
-    clock_t t; 
-    t = clock(); 
-    t_vs_list vars;
-    vars.lst = NULL;
-    vars.dirs = NULL;
-    vars.i = 0;
+	vars->j = 0;
+	while (++vars->j <= 2)
+	{
+		vars->lst = vars->j == 1 ? ft_arglst(*argc, *argv, vars->i, 1) :
+		ft_arglst(*argc, *argv, vars->i, 2);
+		if (vars->flags.unsorted == 0)
+			ft_mergesort(&vars->lst, &vars->flags);
+		ft_structstat(vars->lst);
+		vars->dirs = vars->lst;
+		while (vars->lst)
+		{
+			if (vars->j >= 2 && S_ISDIR(vars->lst->sb.st_mode))
+			{
+				ft_putstr(vars->lst->name);
+				ft_putstr(":\n");
+			}
+			ft_readdir(vars->lst->name, &vars->flags);
+			vars->lst = vars->lst->next;
+			if (vars->j >= 2)
+				vars->j++;
+		}
+		ft_dellst(vars->dirs);
+	}
+}
 
-    ft_flagset(&vars.flags);
-    
+int		main(int argc, char **argv)
+{
+	t_vs_list vars;
 
-    if (argc > 1)
-        vars.i = ft_readflag(argc, argv, &vars.flags);
-
-    if (vars.i == -1)
-    {
-        vars.error = ft_finderror(argc, argv);
-        ft_putstr("ft_ls: illegal option -- ");
-        ft_putchar (vars.error);
-        ft_putstr("\nusage: ft_ls [-AGRafglgrt] [file ...]");
-        return (0);
-    }
-    if (argc == 1 || argc == vars.i || (argc - vars.i == 1 && ft_strcmp(argv[vars.i], "--") == 0))
-    {
-        vars.dirs = ft_readdir(".", &vars.flags);
-        ft_dellst(vars.dirs);
-        return (0);  
-    }
-
-    else if (argc >= 2)
-    {
-        vars.j = 0;
-        while (++vars.j <= 2)
-        {
-            vars.lst = vars.j == 1 ? ft_arglst(argc, argv, vars.i, 1) : ft_arglst(argc, argv, vars.i, 2);
-            if (vars.flags.unsorted == 0)
-             ft_mergesort(&vars.lst, &vars.flags);
-            ft_structstat(vars.lst);
-            vars.dirs = vars.lst;
-         
-            if (vars.lst != NULL)
-            { 
-                while (vars.lst)
-                {
-                    if (vars.j >= 2 && S_ISDIR(vars.lst->sb.st_mode))
-                    {
-                        ft_putstr(vars.lst->name);
-                        ft_putstr(":\n");
-                    }
-                    ft_readdir(vars.lst->name, &vars.flags);
-                    vars.lst = vars.lst->next;
-                    if (vars.j >=2)
-                        vars.j++;
-                }
-            }
-            ft_dellst(vars.dirs);
-        }
-    }
-    t = clock() - t; 
-    double time_taken = ((double)t)/CLOCKS_PER_SEC;
-    printf("fun() took %f seconds to execute \n", time_taken); 
-    return (0);
+	vars.lst = NULL;
+	vars.dirs = NULL;
+	vars.i = 0;
+	ft_flagset(&vars.flags);
+	if (argc > -1 && (vars.i = ft_readflag(argc, argv, &vars.flags)) == -1)
+	{
+		vars.error = ft_finderror(argc, argv);
+		ft_putstr("ft_ls: illegal option -- ");
+		ft_putchar(vars.error);
+		ft_putstr("\nusage: ft_ls [-AGRafglrt] [file ...]");
+		return (0);
+	}
+	if (argc == 1 || argc == vars.i || (argc - vars.i == 1 &&
+	ft_strcmp(argv[vars.i], "--") == 0))
+	{
+		vars.dirs = ft_readdir(".", &vars.flags);
+		ft_dellst(vars.dirs);
+		return (0);
+	}
+	else if (argc >= 2)
+		ft_multiargs(&vars, &argc, &argv);
+	return (0);
 }

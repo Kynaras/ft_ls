@@ -12,7 +12,7 @@
 
 #include "ft_ls.h"
 
-t_s_list ft_totalsizelst(t_n_list *lst)
+t_s_list	ft_totalsizelst(t_n_list *lst)
 {
 	t_s_list totals;
 
@@ -22,4 +22,3 @@ t_s_list ft_totalsizelst(t_n_list *lst)
 	totals.size = ft_findsize(lst, 2);
 	return (totals);
 }
-

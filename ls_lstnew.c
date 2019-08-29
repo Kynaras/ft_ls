@@ -14,7 +14,7 @@
 #include <stddef.h>
 #include <stdlib.h>
 
-t_n_list *ls_lstnew(char *str, char *path)
+t_n_list	*ls_lstnew(char *str, char *path)
 {
 	t_n_list *new;
 
