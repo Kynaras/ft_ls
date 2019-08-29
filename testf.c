@@ -14,7 +14,9 @@
 
 int main(int argc, char **argv) 
 {
-    vs_list vars;
+    clock_t t; 
+    t = clock(); 
+    t_vs_list vars;
     vars.lst = NULL;
     vars.dirs = NULL;
     vars.i = 0;
@@ -69,5 +71,8 @@ int main(int argc, char **argv)
             ft_dellst(vars.dirs);
         }
     }
-   return (0);
+    t = clock() - t; 
+    double time_taken = ((double)t)/CLOCKS_PER_SEC;
+    printf("fun() took %f seconds to execute \n", time_taken); 
+    return (0);
 }

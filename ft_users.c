@@ -12,7 +12,7 @@
 
 #include "ft_ls.h"
 
-void	ft_users(f_list *flags, struct stat *sb, char *path, s_list *totals)
+void	ft_users(t_f_list *flags, struct stat *sb, char *path, t_s_list *totals)
 {
 	int i;
 	int numsize;

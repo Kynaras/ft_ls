@@ -12,7 +12,7 @@
 
 #include "ft_ls.h"
 
-int	ft_flagcount(f_list *flags)
+int	ft_flagcount(t_f_list *flags)
 {
 	int i;
 

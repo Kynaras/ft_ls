@@ -12,7 +12,7 @@
 
 #include "ft_ls.h"
 
-void	ft_regcomp(n_list *a, n_list *b, n_list **result, f_list *flags)
+void	ft_regcomp(t_n_list *a, t_n_list *b, t_n_list **result, t_f_list *flags)
 {
 if (ft_strcmp((*a).name, (*b).name) <= 0)
 	{

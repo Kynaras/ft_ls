@@ -12,7 +12,7 @@
 
 #include "ft_ls.h"
 
-void ft_timecmp(n_list *a, n_list *b, n_list **result, f_list *flags)
+void ft_timecmp(t_n_list *a, t_n_list *b, t_n_list **result, t_f_list *flags)
 {
     struct stat ab;
     struct stat bb;

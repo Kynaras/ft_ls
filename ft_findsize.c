@@ -12,7 +12,7 @@
 
 #include "ft_ls.h"
 
-size_t	ft_findsize(n_list *lst, int type)
+size_t	ft_findsize(t_n_list *lst, int type)
 {
 	long long	num;
 	size_t		i;

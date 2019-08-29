@@ -85,7 +85,7 @@ void	ft_perms(struct stat sb, int i)
 	return ;
 }
 
-void	ft_filestats(struct stat sb, char *path, s_list totals, f_list *flags)
+void	ft_filestats(struct stat sb, char *path, t_s_list totals, t_f_list *flags)
 {
 	int i;
 	int numsize;

@@ -1,8 +1,8 @@
 #include "ft_ls.h"
 
-n_list *sortlist(n_list *a, n_list *b, f_list *flags)
+t_n_list *sortlist(t_n_list *a, t_n_list *b, t_f_list *flags)
 {
-	n_list *result;
+	t_n_list *result;
 	result = NULL;
 
 	if (a == NULL)

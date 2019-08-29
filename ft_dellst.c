@@ -12,9 +12,9 @@
 
 #include "ft_ls.h"
 
-void	ft_dellst(n_list *lst)
+void	ft_dellst(t_n_list *lst)
 {
-	n_list *tmp;
+	t_n_list *tmp;
 
 	while (lst != NULL)
 	{

@@ -14,21 +14,20 @@
 #include <stddef.h>
 #include <stdlib.h>
 
-n_list *ls_lstnew(char *str, char *path)
+t_n_list *ls_lstnew(char *str, char *path)
 {
-	n_list *new;
+	t_n_list *new;
 
-	new = malloc(sizeof(n_list));
+	new = malloc(sizeof(t_n_list));
 	if (new == NULL)
 		return (NULL);
 	new->name = ft_strdup(str);
 	new->path = ft_strdup(path);
 	new->last = new;
 	new->error = 0;
-	ft_join(&new->path, "/");
-
+	if (ft_strcmp(path, "/"))
+		ft_join(&new->path, "/");
 	ft_join(&new->path, str);
-
 	new->next = NULL;
 	return (new);
 }

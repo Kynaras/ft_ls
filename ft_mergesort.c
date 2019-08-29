@@ -19,10 +19,10 @@
 #include <stdlib.h>
 #include "libft/libft.h"
 
-void	splitlist(n_list *original, n_list **first, n_list **second)
+void	splitlist(t_n_list *original, t_n_list **first, t_n_list **second)
 {
-	n_list *count;
-	n_list *count2;
+	t_n_list *count;
+	t_n_list *count2;
 
 	count = original->next;
 	count2 = original;
@@ -40,11 +40,11 @@ void	splitlist(n_list *original, n_list **first, n_list **second)
 	count2->next = NULL;
 }
 
-void	ft_mergesort(n_list **lst, f_list *flags)
+void	ft_mergesort(t_n_list **lst, t_f_list *flags)
 {
-	n_list *head;
-	n_list *a;
-	n_list *b;
+	t_n_list *head;
+	t_n_list *a;
+	t_n_list *b;
 
 	a = NULL;
 	b = NULL;

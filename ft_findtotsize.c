@@ -12,7 +12,7 @@
 
 #include "ft_ls.h"
 
-size_t	ft_findtotsize(n_list *lst, int type)
+size_t	ft_findtotsize(t_n_list *lst, int type)
 {
 	size_t			num;
 	struct passwd	*name;

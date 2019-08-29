@@ -12,7 +12,7 @@
 
 #include "ft_ls.h"
 
-void	ft_errorcheck(char *str, n_list **lst, n_list **dirs)
+void	ft_errorcheck(char *str, t_n_list **lst, t_n_list **dirs)
 {
 	DIR *dr;
 

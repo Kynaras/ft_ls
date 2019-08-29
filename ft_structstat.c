@@ -12,9 +12,9 @@
 
 #include "ft_ls.h"
 
-void	ft_structstat(n_list *lst)
+void	ft_structstat(t_n_list *lst)
 {
-	n_list *tmp;
+	t_n_list *tmp;
 
 	tmp = lst;
 	while (lst)

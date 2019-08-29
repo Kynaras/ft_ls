@@ -12,7 +12,7 @@
 
 #include "ft_ls.h"
 
-void	ft_flagset(f_list *flags)
+void	ft_flagset(t_f_list *flags)
 {
 	flags->recursive = 0;
 	flags->reverse = 0;

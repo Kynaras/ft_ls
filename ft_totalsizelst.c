@@ -12,9 +12,9 @@
 
 #include "ft_ls.h"
 
-s_list ft_totalsizelst(n_list *lst)
+t_s_list ft_totalsizelst(t_n_list *lst)
 {
-	s_list totals;
+	t_s_list totals;
 
 	totals.unamesize = ft_findtotsize(lst, 1);
 	totals.gnamesize = ft_findtotsize(lst, 2);
