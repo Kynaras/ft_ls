@@ -17,7 +17,7 @@
 t_n_list	*ls_lstnew(char *str, char *path)
 {
 	t_n_list *new;
-
+	
 	new = malloc(sizeof(t_n_list));
 	if (new == NULL)
 		return (NULL);
@@ -25,7 +25,7 @@ t_n_list	*ls_lstnew(char *str, char *path)
 	new->path = ft_strdup(path);
 	new->last = new;
 	new->error = 0;
-	if (ft_strcmp(path, "/"))
+	if (path && ft_strcmp(path, "/"))
 		ft_join(&new->path, "/");
 	ft_join(&new->path, str);
 	new->next = NULL;

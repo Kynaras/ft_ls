@@ -56,7 +56,8 @@ t_s_list *totals)
 	{
 		if (flags->list == 1)
 		{
-			vars->lst = ls_lstnew(path, NULL);
+			vars->lst = ls_lstnew(path, "/");
+			free(vars->lst->path);
 			vars->lst->path = ft_strdup(path);
 			ft_structstat(vars->lst);
 			*totals = ft_totalsizelst(vars->lst);
@@ -75,7 +76,7 @@ t_s_list *totals)
 	}
 }
 
-void		qft_strucset(t_v_list *vars)
+void		ft_strucset(t_v_list *vars)
 {
 	vars->tmp = NULL;
 	vars->dirs = NULL;

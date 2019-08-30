@@ -49,7 +49,7 @@ SRC =	main.c \
 		ft_getname.c \
 		ft_acl.c \
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -g -Wall -Wextra -Werror
 
 all: $(NAME)
 

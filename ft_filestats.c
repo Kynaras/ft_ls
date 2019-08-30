@@ -96,7 +96,7 @@ t_f_list *flags)
 		ft_perms(sb, i);
 		i++;
 	}
-	ft_ACL(path);
+	ft_acl(path);
 	i = totals.linksize - ft_numsize(sb.st_nlink);
 	while (i)
 	{

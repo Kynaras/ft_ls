@@ -14,6 +14,8 @@
 
 void	ft_multiargs(t_vs_list *vars, int *argc, char ***argv)
 {
+	t_n_list *tmp;
+
 	vars->j = 0;
 	while (++vars->j <= 2)
 	{
@@ -30,7 +32,8 @@ void	ft_multiargs(t_vs_list *vars, int *argc, char ***argv)
 				ft_putstr(vars->lst->name);
 				ft_putstr(":\n");
 			}
-			ft_readdir(vars->lst->name, &vars->flags);
+			tmp = ft_readdir(vars->lst->name, &vars->flags);
+			ft_dellst(tmp);
 			vars->lst = vars->lst->next;
 			if (vars->j >= 2)
 				vars->j++;
@@ -52,7 +55,7 @@ int		main(int argc, char **argv)
 		vars.error = ft_finderror(argc, argv);
 		ft_putstr("ft_ls: illegal option -- ");
 		ft_putchar(vars.error);
-		ft_putstr("\nusage: ft_ls [-AGRafglrt] [file ...]");
+		ft_putstr("\nusage: ft_ls [-AGRafglort] [file ...]");
 		return (0);
 	}
 	if (argc == 1 || argc == vars.i || (argc - vars.i == 1 &&
@@ -60,9 +63,11 @@ int		main(int argc, char **argv)
 	{
 		vars.dirs = ft_readdir(".", &vars.flags);
 		ft_dellst(vars.dirs);
+		sleep (30);
 		return (0);
 	}
 	else if (argc >= 2)
 		ft_multiargs(&vars, &argc, &argv);
+	sleep (30);
 	return (0);
 }

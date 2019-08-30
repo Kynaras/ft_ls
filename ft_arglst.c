@@ -33,6 +33,7 @@ void		ft_lstmaker(t_n_list **args, char *argv, int type)
 			*args = ls_lstnew(argv, ".");
 		else
 			ls_lstadd(*args, ls_lstnew(argv, "."));
+		closedir(dr);
 	}
 	else
 		closedir(dr);
