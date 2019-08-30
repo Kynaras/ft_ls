@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_chrlen.c                                        :+:      :+:    :+:   */
+/*   ft_ACL.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: keverett <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/30 12:12:14 by keverett          #+#    #+#             */
-/*   Updated: 2019/08/30 12:12:18 by keverett         ###   ########.fr       */
+/*   Created: 2019/08/30 11:50:49 by keverett          #+#    #+#             */
+/*   Updated: 2019/08/30 11:50:50 by keverett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_ls.h"
 
-ssize_t	ft_chrlen(char *buf, char c)
+void	ft_acl(char *path)
 {
-	int i;
+	acl_t acl;
 
-	i = 0;
-	if (buf[0] == '\0')
-		return (-1);
-	while (buf[i])
+	if (ft_attr(path) > 0)
+		ft_putchar('@');
+	else if ((acl = acl_get_link_np(path, ACL_TYPE_EXTENDED)))
 	{
-		if (buf[0] == c)
-			return (0);
-		if (buf[i] == c)
-			return (i);
-		i++;
+		ft_putchar('+');
+		acl_free(acl);
 	}
-	return (i);
+	else
+		(ft_putchar(' '));
 }

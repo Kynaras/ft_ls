@@ -18,4 +18,3 @@ void			ft_putlonglong(long long n)
 		ft_putlonglong(n / 10);
 	ft_putchar((int)n % 10 + 48);
 }
-

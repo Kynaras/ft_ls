@@ -85,9 +85,10 @@ void	ft_perms(struct stat sb, int i)
 	return ;
 }
 
-void	ft_filestats(struct stat sb, char *path, t_s_list totals, t_f_list *flags)
+void	ft_filestats(struct stat sb, char *path, t_s_list totals,
+t_f_list *flags)
 {
-	int i;
+	int		i;
 
 	i = 0;
 	while (i < 10)
@@ -95,7 +96,7 @@ void	ft_filestats(struct stat sb, char *path, t_s_list totals, t_f_list *flags)
 		ft_perms(sb, i);
 		i++;
 	}
-	ft_attr(path) > 0 ? ft_putchar('@') : ft_putchar(' ');
+	ft_ACL(path);
 	i = totals.linksize - ft_numsize(sb.st_nlink);
 	while (i)
 	{

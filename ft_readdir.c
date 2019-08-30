@@ -75,7 +75,7 @@ t_s_list *totals)
 	}
 }
 
-void		ft_strucset(t_v_list *vars)
+void		qft_strucset(t_v_list *vars)
 {
 	vars->tmp = NULL;
 	vars->dirs = NULL;

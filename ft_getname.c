@@ -10,12 +10,20 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_ls.h"
+
 char	*ft_getname(char *str)
 {
+	int i;
+
+	i = ft_strlen(str);
 	while (*str)
 		str++;
-	while (*str != '/')
+	while (*str != '/' && i >= 0)
+	{
+		i--;
 		str--;
+	}
 	str++;
 	return (str);
 }

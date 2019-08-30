@@ -47,6 +47,7 @@ SRC =	main.c \
 		ft_colours.c \
 		ft_timecmp.c \
 		ft_getname.c \
+		ft_acl.c \
 
 FLAGS = -Wall -Wextra -Werror
 

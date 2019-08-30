@@ -84,19 +84,27 @@ void	ft_semihiddenfiles(t_n_list *lst, t_f_list *flags, t_s_list totals)
 
 void	ft_totalsize(t_n_list *lst, t_f_list *flags)
 {
-	long long size;
+	long long	size;
+	size_t		files;
 
+	files = 0;
 	size = 0;
 	while (lst)
 	{
 		if (*lst->name != '.' || (flags->hidden == 1 && *lst->name == '.') ||
-			(flags->unsorted == 1 & *lst->name == '.'))
+		(flags->unsorted == 1 & *lst->name == '.'))
+		{
 			size += lst->sb.st_blocks;
+			files++;
+		}
 		lst = lst->next;
 	}
-	ft_putstr("total ");
-	ft_putlonglong(size);
-	ft_putchar('\n');
+	if (files != 0)
+	{
+		ft_putstr("total ");
+		ft_putlonglong(size);
+		ft_putchar('\n');
+	}
 }
 
 void	ft_printlst(t_n_list *lst, t_f_list *flags)

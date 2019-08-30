@@ -12,7 +12,7 @@
 
 #include "ft_ls.h"
 
-void	ft_lstmaker(t_n_list **args, char *argv, int type)
+void		ft_lstmaker(t_n_list **args, char *argv, int type)
 {
 	DIR *dr;
 
@@ -40,7 +40,7 @@ void	ft_lstmaker(t_n_list **args, char *argv, int type)
 
 t_n_list	*ft_arglst(int argc, char **argv, int i, int type)
 {
-	int		index;
+	int			index;
 	t_n_list	*args;
 
 	index = i;

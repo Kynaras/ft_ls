@@ -27,6 +27,7 @@
 # include <time.h>
 # include <unistd.h>
 # include <sys/xattr.h>
+# include <sys/acl.h>
 
 typedef struct	s_size_list
 {
@@ -119,4 +120,5 @@ void			ft_size(struct stat *sb,
 t_s_list *totals);
 void			ft_colours(t_n_list *lst);
 char			*ft_getname(char *str);
+void			ft_acl(char *path);
 #endif
