@@ -69,8 +69,9 @@ t_s_list *totals)
 	else
 	{
 		ft_putstr("ft_ls: ");
-		ft_putstr(path);
-		perror(" ");
+		ft_putstr(ft_getname(path));
+		ft_putstr(": ");
+		perror("");
 	}
 }
 

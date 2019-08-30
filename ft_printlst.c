@@ -61,8 +61,6 @@ void	ft_hiddenfiles(t_n_list *lst, t_f_list *flags, t_s_list totals)
 
 void	ft_semihiddenfiles(t_n_list *lst, t_f_list *flags, t_s_list totals)
 {
-	unsigned int check;
-
 	if (flags->list == 1 && ft_strcmp(lst->name, ".") != 0 &&
 		ft_strcmp(lst->name, "..") != 0)
 	{

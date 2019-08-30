@@ -88,7 +88,6 @@ void	ft_perms(struct stat sb, int i)
 void	ft_filestats(struct stat sb, char *path, t_s_list totals, t_f_list *flags)
 {
 	int i;
-	int numsize;
 
 	i = 0;
 	while (i < 10)
@@ -105,8 +104,8 @@ void	ft_filestats(struct stat sb, char *path, t_s_list totals, t_f_list *flags)
 	}
 	ft_putnbr((int)sb.st_nlink);
 	ft_putchar(' ');
-	ft_grps(flags, &sb, path, &totals);
-	ft_users(flags, &sb, path, &totals);
+	ft_grps(flags, &sb, &totals);
+	ft_users(flags, &sb, &totals);
 	ft_size(&sb, &totals);
 	ft_putlonglong(sb.st_size);
 	ft_timesplit(ctime(&sb.st_mtimespec.tv_sec), &sb);

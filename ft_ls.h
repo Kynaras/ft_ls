@@ -111,11 +111,12 @@ size_t			ft_findlen(char *str);
 void			ft_linkname(char *path);
 int				ft_attr(char *path);
 t_s_list		ft_totalsizelst(t_n_list *lst);
-void			ft_grps(t_f_list *flags, struct stat *sb, char *path,
+void			ft_grps(t_f_list *flags, struct stat *sb,
 t_s_list *totals);
-void			ft_users(t_f_list *flags, struct stat *sb, char *path,
+void			ft_users(t_f_list *flags, struct stat *sb,
 t_s_list *totals);
 void			ft_size(struct stat *sb,
 t_s_list *totals);
 void			ft_colours(t_n_list *lst);
+char			*ft_getname(char *str);
 #endif

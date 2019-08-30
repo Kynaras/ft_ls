@@ -12,7 +12,7 @@
 
 #include "ft_ls.h"
 
-void	ft_grps(t_f_list *flags, struct stat *sb, char *path, t_s_list *totals)
+void	ft_grps(t_f_list *flags, struct stat *sb, t_s_list *totals)
 {
 	int numsize;
 	int i;
