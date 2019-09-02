@@ -17,13 +17,12 @@ void	ft_multiargs(t_vs_list *vars, int *argc, char ***argv)
 	t_n_list *tmp;
 
 	vars->j = 0;
-	while (++vars->j <= 2)
+	while (++vars->j <= 3)
 	{
-		vars->lst = vars->j == 1 ? ft_arglst(*argc, *argv, vars->i, 1) :
-		ft_arglst(*argc, *argv, vars->i, 2);
+		vars->lst = ft_arglst(*argc, *argv, vars->i, vars->j);
+		ft_structstats(vars->lst);
 		if (vars->flags.unsorted == 0)
 			ft_mergesort(&vars->lst, &vars->flags);
-		ft_structstats(vars->lst);
 		vars->dirs = vars->lst;
 		while (vars->lst)
 		{
@@ -32,7 +31,6 @@ void	ft_multiargs(t_vs_list *vars, int *argc, char ***argv)
 			tmp = ft_readdir(vars->lst->name, &vars->flags);
 			ft_dellst(tmp);
 			vars->lst = vars->lst->next;
-			vars->j = (vars->j >= 2) ? vars->j++ : vars->j;
 		}
 		ft_dellst(vars->dirs);
 	}

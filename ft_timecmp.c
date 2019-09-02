@@ -12,7 +12,7 @@
 
 #include "ft_ls.h"
 
-void	ft_timecmp(t_n_list *a, t_n_list *b, t_n_list **result, t_f_list *flags)
+void ft_timecmp(t_n_list *a, t_n_list *b, t_n_list **result, t_f_list *flags)
 {
 	struct stat ab;
 	struct stat bb;
@@ -20,33 +20,29 @@ void	ft_timecmp(t_n_list *a, t_n_list *b, t_n_list **result, t_f_list *flags)
 	lstat(a->path, &ab);
 	lstat(b->path, &bb);
 
-	if (ab.st_mtime > bb.st_mtime || (ab.st_mtime == bb.st_mtime && 
-	ab.st_mtimespec.tv_nsec > bb.st_mtimespec.tv_nsec))
+	if (ab.st_mtimespec.tv_sec > bb.st_mtimespec.tv_sec || (ab.st_mtimespec.tv_sec == bb.st_mtimespec.tv_sec &&
+															 ab.st_mtimespec.tv_nsec > bb.st_mtimespec.tv_nsec))
 	{
 		(*result) = flags->reverse ? b : a;
-		(*result)->next = flags->reverse ? sortlist(b->next, a, flags) :
-		sortlist(a->next, b, flags);
+		(*result)->next = flags->reverse ? sortlist(a, b->next, flags) : sortlist(a->next, b, flags);
 	}
-	else if (ab.st_mtime == bb.st_mtime && (ab.st_mtimespec.tv_nsec == 
-	bb.st_mtimespec.tv_nsec))
+	else if (ab.st_mtimespec.tv_sec == bb.st_mtimespec.tv_sec && ab.st_mtimespec.tv_nsec ==
+																  bb.st_mtimespec.tv_nsec)
 	{
 		if (ft_strcmp((*a).name, (*b).name) <= 0)
-	{
-		(*result) = flags->reverse ? b : a;
-		(*result)->next = flags->reverse ? sortlist(b->next, a, flags) :
-		sortlist(a->next, b, flags);
+		{
+			(*result) = flags->reverse ? b : a;
+			(*result)->next = flags->reverse ? sortlist(a, b->next, flags) : sortlist(a->next, b, flags);
+		}
+		else
+		{
+			*result = flags->reverse ? a : b;
+			(*result)->next = flags->reverse ? sortlist(a->next, b, flags) : sortlist(a, b->next, flags);
+		}
 	}
 	else
 	{
 		*result = flags->reverse ? a : b;
-		(*result)->next = flags->reverse ? sortlist(b, a->next, flags) :
-		sortlist(a, b->next, flags);
-	}
-	}
-	else
-	{
-		*result = flags->reverse ? a : b;
-		(*result)->next = flags->reverse ? sortlist(b, a->next, flags) :
-		sortlist(a, b->next, flags);
+		(*result)->next = flags->reverse ? sortlist(a->next, b, flags) : sortlist(a, b->next, flags);
 	}
 }
