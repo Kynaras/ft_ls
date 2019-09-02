@@ -1,35 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sortlist.c                                         :+:      :+:    :+:   */
+/*   ft_structstats.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: keverett <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/29 16:26:11 by keverett          #+#    #+#             */
-/*   Updated: 2019/08/29 16:26:13 by keverett         ###   ########.fr       */
+/*   Created: 2019/09/02 10:48:11 by keverett          #+#    #+#             */
+/*   Updated: 2019/09/02 10:48:15 by keverett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-t_n_list	*sortlist(t_n_list *a, t_n_list *b, t_f_list *flags)
+void	ft_structstats(t_n_list *lst)
 {
-	t_n_list *result;
+	t_n_list *tmp;
 
-	result = NULL;
-	if (a == NULL)
+	tmp = lst;
+	while (lst)
 	{
-		return (b);
+		if ((lstat(lst->name, &lst->sb)) == -1)
+			tmp->error = 1;
+		lst = lst->next;
 	}
-	if (b == NULL)
-	{
-		return (a);
-	}
-	if (flags->time == 1)
-	{
-		ft_timecmp(a, b, &result, flags);
-	}
-	else
-		ft_regcomp(a, b, &result, flags);
-	return (result);
 }

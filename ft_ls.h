@@ -121,4 +121,6 @@ t_s_list *totals);
 void			ft_colours(t_n_list *lst);
 char			*ft_getname(char *str);
 void			ft_acl(char *path);
+void			ft_putthis(char *str);
+void			ft_structstats(t_n_list *lst);
 #endif

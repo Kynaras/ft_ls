@@ -48,6 +48,8 @@ SRC =	main.c \
 		ft_timecmp.c \
 		ft_getname.c \
 		ft_acl.c \
+		ft_putthis.c \
+		ft_structstats.c \
 
 FLAGS = -g -Wall -Wextra -Werror
 
@@ -57,3 +59,9 @@ $(NAME): $(SRC) $(HEADER)
 	make -C libft/
 	gcc $(FLAGS) $(SRC) $(LIBRARY) -o ft_ls
 
+clean:
+	rm -f ft_ls
+
+fclean: clean
+
+re: fclean all

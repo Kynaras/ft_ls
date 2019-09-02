@@ -6,7 +6,7 @@
 #    By: keverett <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/23 10:35:56 by keverett          #+#    #+#              #
-#    Updated: 2019/08/07 12:51:01 by keverett         ###   ########.fr        #
+#    Updated: 2019/09/02 09:07:23 by keverett         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -92,6 +92,7 @@ $(NAME): $(SRC) $(HEADER)
 		gcc $(FLAGS) $(SRC)
 		ar rc $(NAME) $(OBJECTS)
 		ranlib $(NAME)
+		rm -f $(OBJECTS)
 
 clean:
 		rm -f $(OBJECTS)

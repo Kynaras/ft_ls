@@ -17,7 +17,7 @@
 t_n_list	*ls_lstnew(char *str, char *path)
 {
 	t_n_list *new;
-	
+
 	new = malloc(sizeof(t_n_list));
 	if (new == NULL)
 		return (NULL);

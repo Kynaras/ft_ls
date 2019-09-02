@@ -30,9 +30,9 @@ void		ft_lstmaker(t_n_list **args, char *argv, int type)
 	else if (type == 2)
 	{
 		if (*args == NULL)
-			*args = ls_lstnew(argv, ".");
+			*args = ls_lstnew(argv, "");
 		else
-			ls_lstadd(*args, ls_lstnew(argv, "."));
+			ls_lstadd(*args, ls_lstnew(argv, ""));
 		closedir(dr);
 	}
 	else
