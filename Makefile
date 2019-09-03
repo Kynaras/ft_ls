@@ -51,13 +51,12 @@ SRC =	main.c \
 		ft_putthis.c \
 		ft_structstats.c \
 
-FLAGS = -g -Wall -Wextra -Werror
-
+FLAGS = -Wall -Wextra -Werror 
 all: $(NAME)
 
 $(NAME): $(SRC) $(HEADER)
 	make -C libft/
-	gcc $(FLAGS) $(SRC) $(LIBRARY) -o ft_ls
+	gcc $(FLAGS) $(SRC) $(LIBRARY)
 
 clean:
 	rm -f ft_ls
