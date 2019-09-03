@@ -97,7 +97,6 @@ t_n_list	*ft_readdir(char *path, t_f_list *flags)
 {
 	t_v_list	vars;
 	t_s_list	totals;
-	char		*test;
 
 	ft_strucset(&vars);
 	if (!(vars.dr = opendir(path)))

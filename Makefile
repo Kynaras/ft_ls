@@ -56,7 +56,7 @@ all: $(NAME)
 
 $(NAME): $(SRC) $(HEADER)
 	make -C libft/
-	gcc $(FLAGS) $(SRC) $(LIBRARY)
+	gcc $(FLAGS) $(SRC) $(LIBRARY) -o ft_ls
 
 clean:
 	rm -f ft_ls
