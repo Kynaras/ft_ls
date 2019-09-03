@@ -17,7 +17,7 @@ void	ft_multiargs(t_vs_list *vars, int *argc, char ***argv)
 	t_n_list *tmp;
 
 	vars->j = 0;
-	while (++vars->j <= 3)
+	while (++vars->j <= 4)
 	{
 		vars->lst = ft_arglst(*argc, *argv, vars->i, vars->j);
 		ft_structstats(vars->lst);
@@ -49,7 +49,7 @@ int		main(int argc, char **argv)
 		vars.error = ft_finderror(argc, argv);
 		ft_putstr("ft_ls: illegal option -- ");
 		ft_putchar(vars.error);
-		ft_putstr("\nusage: ft_ls [-AGRafglort] [file ...]");
+		ft_putstr("\nusage: ft_ls [-AGRafglort] [file ...]\n");
 		return (0);
 	}
 	if (argc == 1 || argc == vars.i || (argc - vars.i == 1 &&

@@ -32,20 +32,29 @@ void		ft_recurse(t_v_list vars, t_f_list *flags)
 
 void		ft_readlsts(t_v_list *vars, char *path)
 {
+	char		*test;
+	struct stat	sb;
+
 	while ((vars->de = readdir(vars->dr)) != NULL)
 	{
+		test = NULL;
+		ft_join(&test, path);
+		ft_join(&test, "/");
+		ft_join(&test, vars->de->d_name);
 		if (vars->lst == NULL)
 			vars->lst = ls_lstnew(vars->de->d_name, path);
 		else if (vars->lst != NULL)
 			ls_lstadd(vars->lst, ls_lstnew(vars->de->d_name, path));
-		if (vars->de->d_type == DT_DIR && ft_strcmp(vars->de->d_name, ".")
-		!= 0 && ft_strcmp(vars->de->d_name, "..") != 0)
+		if (lstat(test, &sb) == 0 && S_ISDIR(sb.st_mode) &&
+			ft_strcmp(vars->de->d_name, ".") != 0 &&
+			ft_strcmp(vars->de->d_name, "..") != 0)
 		{
 			if (vars->dirs == NULL)
 				vars->dirs = ls_lstnew(vars->de->d_name, path);
 			else
 				ls_lstadd(vars->dirs, ls_lstnew(vars->de->d_name, path));
 		}
+		free(test);
 	}
 }
 
@@ -86,8 +95,9 @@ void		ft_strucset(t_v_list *vars)
 
 t_n_list	*ft_readdir(char *path, t_f_list *flags)
 {
-	t_v_list vars;
-	t_s_list totals;
+	t_v_list	vars;
+	t_s_list	totals;
+	char		*test;
 
 	ft_strucset(&vars);
 	if (!(vars.dr = opendir(path)))
